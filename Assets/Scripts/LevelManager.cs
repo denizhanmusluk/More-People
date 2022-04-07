@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LevelManager : MonoBehaviour
+{
+    public GameObject loadedLevel;
+    [SerializeField] List<GameObject> levels;
+    //[SerializeField] public int LevelCount;
+
+    void Start()
+    {
+        Globals.LevelCount = levels.Count;
+
+        levelLoad();
+    }
+    public void levelLoad()
+    {
+        if (PlayerPrefs.GetInt("levelIndex") != 0)
+        {
+            Globals.currentLevel = PlayerPrefs.GetInt("levelIndex");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
+
+        }
+        //PlayerPrefs.SetInt("level", 0);
+        if (PlayerPrefs.GetInt("level") != 0)
+        {
+            Debug.Log(PlayerPrefs.GetInt("level"));
+            Globals.currentLevelIndex = PlayerPrefs.GetInt("level");
+
+        }
+
+        //LevelsPrefab = (GameObject)Instantiate(Resources.Load("Level" + Globals.currentLevelIndex.ToString()));
+        loadedLevel = Instantiate(levels[Globals.currentLevelIndex], transform.position, Quaternion.identity);
+
+        Debug.Log("level " + Globals.currentLevel);
+        Debug.Log("LEVEL " + PlayerPrefs.GetInt("levelIndex"));
+    }
+}
