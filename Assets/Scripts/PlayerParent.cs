@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerParent : MonoBehaviour
 {
     [SerializeField] public List<Transform> humans;
     public float horizontalFollowSpeed;
-  public void throughlyScale()
+    public NavMeshAgent agent;
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.enabled = false;
+    }
+    public void throughlyScale()
     {
         StartCoroutine(scaleCalling());
     }

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IDamageble
 {
     void hitPeople(GameObject human);
+    void hitObstacle(GameObject obs);
 }

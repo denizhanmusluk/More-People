@@ -5,15 +5,19 @@ using UnityEngine;
 public class FinishRunner : MonoBehaviour
 {
     // Start is called before the first frame update
+    PlayerControl playerControl;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            PlayerControl playerControl = other.GetComponent<PlayerControl>();
+            playerControl = other.GetComponent<PlayerControl>();
             PlayerParent playerParent = other.transform.parent.GetComponent<PlayerParent>();
+            playerParent.agent.enabled = true;
             playerControl.currentBehaviour = PlayerControl.States.runnerToIdle;
-            playerControl.idleCamera.Priority = 10;
+            playerControl.idleCamera.Priority = 0;
             playerControl.runnerCamera.Priority = 0;
+            playerControl.runnerToIdleCamera.Priority = 10;
+            StartCoroutine(CameraChange());
             for (int i = 0; i < playerParent.humans.Count; i++)
             {
                 playerParent.humans[i].GetComponent<PlayerBehaviour>().runnerActive = false;
@@ -21,18 +25,21 @@ public class FinishRunner : MonoBehaviour
             for (int i = 1; i < playerParent.humans.Count; i++)
             {
                 playerParent.humans[i].GetComponent<Employee>().currentBehaviour = Employee.States.wait;
+                playerParent.humans[i].GetComponent<Employee>().agent.enabled = true;
                 playerParent.humans[i].transform.parent = transform.root;
             }
 
             GameManager.Instance.Notify_GameFinishObservers();
         }
     }
-    IEnumerator setSpeed()
+    IEnumerator CameraChange()
     {
-        while (true)
-        {
+        yield return new WaitForSeconds(1f);
+        playerControl.idleCamera.Priority = 10;
+        playerControl.runnerCamera.Priority = 0;
+        playerControl.runnerToIdleCamera.Priority = 0;
+        playerControl.Lawyer.SetActive(true);
+        playerControl.Hand.SetActive(false);
 
-            yield return null;
-        }
     }
 }

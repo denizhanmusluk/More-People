@@ -38,19 +38,21 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         finishObservers = new List<IFinish>();
         runnerStartObservers = new List<IRunner>();
     }
-    //public void MoneyUpdate(int miktar)
-    //{
-    //    int moneyOld = Globals.moneyAmount;
-    //    Globals.moneyAmount = Globals.moneyAmount + miktar;
-    //    LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
-    //    {
-    //        moneyLabel.text = "$" + val.ToString("N0");
-    //    });//.setOnComplete(() =>{});
-    //}
+    public void MoneyUpdate(int miktar)
+    {
+        int moneyOld = Globals.moneyAmount;
+        Globals.moneyAmount = Globals.moneyAmount + miktar;
+        LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
+        {
+            moneyLabel.text = "$" + val.ToString("N0");
+        });//.setOnComplete(() =>{});
+        PlayerPrefs.SetInt("money", Globals.moneyAmount);
+
+    }
     void Start()
     {
-        Globals.moneyAmount = 0;
-    
+        Globals.moneyAmount = PlayerPrefs.GetInt("money");
+
         startButton.SetActive(true);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
@@ -62,10 +64,28 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         moneyLabel.text =Globals.moneyAmount.ToString();
 
     }
-
+    public void moneyUp(int banknotVal)
+    {
+        Globals.moneyAmount += banknotVal;
+        PlayerPrefs.SetInt("money", Globals.moneyAmount);
+        moneyLabel.text = Globals.moneyAmount.ToString();
+    }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayerPrefs.SetInt("currentDoctorCount", 0);
+            PlayerPrefs.SetInt("hospitalLevel", 0);            
+            PlayerPrefs.SetInt("policeStationLevel", 0);
+            PlayerPrefs.SetInt("currentPoliceCount", 0);
+            PlayerPrefs.SetInt("currentFarmerCount", 0);
+            PlayerPrefs.SetInt("farmvillelevel", 0);
+            PlayerPrefs.SetInt("money", 0);
 
+            PlayerPrefs.SetInt("levelIndex", 1);
+            PlayerPrefs.SetInt("level", 0);
+
+        }
     }
 
 

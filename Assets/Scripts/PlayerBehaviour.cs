@@ -11,6 +11,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     //public int jobId = 0;
     float followSpeed = 5f;
     public bool runnerActive = true;
+   public GameObject humanfront;
+    public GameObject humanBack;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -27,18 +29,20 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         if (human.GetComponent<Employee>() == null)
         {
             human.AddComponent<Employee>();
-            human.GetComponent<Employee>().Player = playerParent.transform.GetChild(0).transform;
+            human.GetComponent<Employee>().Player = playerParent.transform;
         }
         if (human.GetComponent<PeopleHit>() != null)
         {
             Destroy(human.GetComponent<PeopleHit>());
         }
+        humanfront = human;
+        human.GetComponent<PlayerBehaviour>().humanBack = this.gameObject;
         StartCoroutine(moveToFollowPoint(human));
         transform.parent.GetComponent<PlayerParent>().throughlyScale();
     }
-    public void followTarget(GameObject human)
+    public void followTarget(GameObject human, Transform followPoint)
     {
-        StartCoroutine(following(human, latestFollowPoint));
+        StartCoroutine(reMoveToFollowPoint(human, followPoint));
     }
     IEnumerator moveToFollowPoint(GameObject human)
     {
@@ -59,7 +63,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     }
     IEnumerator following(GameObject human, Transform followPoint)
     {
-  
+        yield return null;
+        runnerActive = true;
         while (runnerActive)
         {
             //human.transform.position = Vector3.MoveTowards(human.transform.position, followPoint.position, (Mathf.Abs(playerParent.horizontalFollowSpeed) + 10 ) * 0.8f * Time.deltaTime);
@@ -69,4 +74,35 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
 
         }
     }
+   public void hitObstacle(GameObject obs)
+    {
+        runnerActive = false;
+        humanBack.GetComponent<PlayerBehaviour>().runnerActive = false;
+        //humanBack.GetComponent<PlayerBehaviour>().runnerActive = true;
+        transform.parent = null;
+        if (playerParent.humans[playerParent.humans.Count - 1].name != this.transform.name)
+        {
+            humanfront.GetComponent<PlayerBehaviour>().humanBack = humanBack;
+            humanBack.GetComponent<PlayerBehaviour>().followTarget(humanfront, humanBack.GetComponent<PlayerBehaviour>().followPoint);
+            humanBack.GetComponent<PlayerBehaviour>().humanfront = humanfront;
+
+        }
+        playerParent.humans.Remove(this.transform);
+
+        //Destroy(this);
+
+    }
+    IEnumerator reMoveToFollowPoint(GameObject human,Transform followPoint)
+    {
+        while (Vector3.Distance(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z)) > 0.1f)
+        {
+            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z), 10 * Time.deltaTime);
+            yield return null;
+
+        }
+        human.transform.position = new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z);
+        StartCoroutine(following(human, followPoint));
+
+    }
+
 }

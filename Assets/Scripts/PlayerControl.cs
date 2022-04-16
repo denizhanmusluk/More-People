@@ -12,11 +12,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     [Range(0.0f, 10.0f)]
     [SerializeField] float Controlsensivity;
 
-    //[Range(0.0f, 50.0f)]
-    //[SerializeField] float Steeringsensivity;
-
-    //[Range(0.0f, 50.0f)]
-    //[SerializeField] public float HorizontalSens;
+    public GameObject Lawyer, Hand;
 
     public float acceleration = 15;
     public float backSpeed = 10;
@@ -28,7 +24,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     [SerializeField] GameObject playerParents;
     //[SerializeField] public GameObject moneyTarget;
     //[SerializeField] public SoldierCollecting soldierCollect;
-    [SerializeField] public CinemachineVirtualCamera runnerCamera, idleCamera;
+    [SerializeField] public CinemachineVirtualCamera runnerCamera, idleCamera, runnerToIdleCamera;
     public enum States { idle, runner, idleControl , runnerToIdle}
     public States currentBehaviour;
     public int slotNum = 0;
@@ -58,12 +54,15 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     private void Start()
     {
         spd = acceleration;
-        //runnerCamera.Priority = 10;
-        //idleCamera.Priority = 0;
+        //runnerCamera.Priority = 0;
+        //idleCamera.Priority = 10;
+        //runnerToIdleCamera.Priority = 0;
         parent = transform.parent.gameObject;
         playerParent = transform.parent.GetComponent<PlayerParent>();
 
         playerFirstPos = transform.position;
+        Lawyer.SetActive(true);
+        Hand.SetActive(false);
     }
     public void setCam()
     {
@@ -77,14 +76,29 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     public void StartGame()
     {
         GameManager.Instance.Remove_StartObserver(this);
-
         //moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
         //moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
 
         currentBehaviour = States.runner;
         anim.SetBool("walk" ,true);
+        runnerCamera.Priority = 0;
+        idleCamera.Priority = 0;
+        runnerToIdleCamera.Priority = 10;
+        StartCoroutine(startDelay());
+    }
+    IEnumerator startDelay()
+    {
+        Debug.Log("start game1");
+
+        yield return new WaitForSeconds(1f);
         runnerCamera.Priority = 10;
         idleCamera.Priority = 0;
+        runnerToIdleCamera.Priority = 0;
+
+        Lawyer.SetActive(false);
+        Hand.SetActive(true);
+        Debug.Log("start game2");
+
     }
     void forward()
     {
@@ -148,6 +162,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         if (spd > 0)
         {
             transform.parent.transform.Translate(transform.parent.transform.forward * Time.deltaTime * spd);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(0, transform.localPosition.y, transform.localPosition.z), Time.deltaTime);
         }
         else
         {
