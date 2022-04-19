@@ -13,7 +13,11 @@ public class University : MonoBehaviour, IEmployeeDropping
     public bool isFullCapacity = false;
     private void Start()
     {
-        outline.fillAmount = 0;
+        build.Text1 = GameManager.Instance.teacheText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        build.Text2 = GameManager.Instance.teacheText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        build.buildNo = jobId;
+
+        StartCoroutine(startDelay());
 
         if (PlayerPrefs.GetInt("universityLevel") != 0)
         {
@@ -25,24 +29,41 @@ public class University : MonoBehaviour, IEmployeeDropping
         }
 
         build.buildInit(Globals.universityLevel);
-        Debug.Log("universityLevel" + Globals.universityLevel);
 
-        employeCountText.text = Globals.currentTeacherCount.ToString() + "/" + EmplCountforUpgrade[Globals.universityLevel].ToString();
-        outline.fillAmount = (float)Globals.currentTeacherCount / (float)EmplCountforUpgrade[Globals.universityLevel];
 
-        if (Globals.universityLevel == build.levels.Count - 1)
+        if (Globals.universityLevel == build.levels.Count)
         {
             isFullCapacity = true;
         }
+    }
+    IEnumerator startDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach (var img in GetComponentsInChildren<Image>())
+        {
+            outline = img;
+        }
+        foreach (var txt in GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            employeCountText = txt;
+        }
+        employeCountText.text = Globals.currentTeacherCount.ToString() + "/" + EmplCountforUpgrade[Globals.universityLevel].ToString();
+        outline.fillAmount = (float)Globals.currentTeacherCount / (float)EmplCountforUpgrade[Globals.universityLevel];
+
+            GameManager.Instance.teacheText.transform.parent.gameObject.SetActive(true);
+            GameManager.Instance.teacheText.text = employeCountText.text;
+
+    
     }
     public void employeeDrop()
     {
         Globals.currentTeacherCount++;
         PlayerPrefs.SetInt("currentTeacherCount", Globals.currentTeacherCount);
-        outline.fillAmount = (float)Globals.currentTeacherCount / (float)EmplCountforUpgrade[Globals.universityLevel];
-
-        employeCountText.text = Globals.currentTeacherCount.ToString() + "/" + EmplCountforUpgrade[Globals.universityLevel].ToString();
-
+        if (outline != null && employeCountText != null)
+        {
+            outline.fillAmount = (float)Globals.currentTeacherCount / (float)EmplCountforUpgrade[Globals.universityLevel];
+            employeCountText.text = Globals.currentTeacherCount.ToString() + "/" + EmplCountforUpgrade[Globals.universityLevel].ToString();
+        }
         if (Globals.currentTeacherCount == EmplCountforUpgrade[Globals.universityLevel])
         {
 
@@ -59,10 +80,10 @@ public class University : MonoBehaviour, IEmployeeDropping
         Globals.currentTeacherCount = 0;
         PlayerPrefs.SetInt("currentTeacherCount", Globals.currentTeacherCount);
 
-        outline.fillAmount = 0;
 
 
         build.buildInit(Globals.universityLevel);
+        StartCoroutine(startDelay());
 
     }
     private void OnTriggerEnter(Collider other)
@@ -76,7 +97,7 @@ public class University : MonoBehaviour, IEmployeeDropping
                 {
                     if (!isFullCapacity)
                     {
-                        if (i + 1 > (EmplCountforUpgrade[Globals.universityLevel] - Globals.currentTeacherCount) && (Globals.universityLevel == build.levels.Count - 2))
+                        if (i + 1 > (EmplCountforUpgrade[Globals.universityLevel] - Globals.currentTeacherCount) && (Globals.universityLevel == build.levels.Count - 1))
                         {
                             isFullCapacity = true;
 

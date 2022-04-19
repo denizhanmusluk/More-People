@@ -92,7 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2550b60893d55d64c9807a8aedddae43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrefab: {fileID: 6329391237241081351, guid: d1d8df0c403257946aeb67916c256ef2,
-    type: 3}
+  npcPrefab:
+  - {fileID: 6329391237241081351, guid: d1d8df0c403257946aeb67916c256ef2, type: 3}
+  - {fileID: 6329391237241081351, guid: 4cdeaafed43b26941998fb37c2eadafe, type: 3}
+  - {fileID: 6329391237241081351, guid: f6b7747932ef9584eb0af50b15390e98, type: 3}
+  - {fileID: 6329391237241081351, guid: fceb8adb8fdfc8148af1e83aa2ba4404, type: 3}
   spawnTime: 2
   target: []
+  spawnActive: 1

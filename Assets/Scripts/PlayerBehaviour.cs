@@ -22,23 +22,27 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     }
     public void hitPeople(GameObject human)
     {
-        if (human.GetComponent<PlayerBehaviour>() == null)
+        if (transform.parent.GetComponent<PlayerParent>() != null)
         {
-            human.AddComponent<PlayerBehaviour>();
+            if (human.GetComponent<PlayerBehaviour>() == null)
+            {
+                human.AddComponent<PlayerBehaviour>();
+            }
+            if (human.GetComponent<Employee>() == null)
+            {
+                human.AddComponent<Employee>();
+                human.GetComponent<Employee>().Player = playerParent.transform;
+            }
+            if (human.GetComponent<PeopleHit>() != null)
+            {
+                Destroy(human.GetComponent<PeopleHit>());
+            }
+            humanfront = human;
+            human.GetComponent<PlayerBehaviour>().humanBack = this.gameObject;
+            StartCoroutine(moveToFollowPoint(human));
+
+            transform.parent.GetComponent<PlayerParent>().throughlyScale();
         }
-        if (human.GetComponent<Employee>() == null)
-        {
-            human.AddComponent<Employee>();
-            human.GetComponent<Employee>().Player = playerParent.transform;
-        }
-        if (human.GetComponent<PeopleHit>() != null)
-        {
-            Destroy(human.GetComponent<PeopleHit>());
-        }
-        humanfront = human;
-        human.GetComponent<PlayerBehaviour>().humanBack = this.gameObject;
-        StartCoroutine(moveToFollowPoint(human));
-        transform.parent.GetComponent<PlayerParent>().throughlyScale();
     }
     public void followTarget(GameObject human, Transform followPoint)
     {
@@ -79,7 +83,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         runnerActive = false;
         humanBack.GetComponent<PlayerBehaviour>().runnerActive = false;
         //humanBack.GetComponent<PlayerBehaviour>().runnerActive = true;
-        transform.parent = null;
+        transform.parent = playerParent.transform.parent;
         if (playerParent.humans[playerParent.humans.Count - 1].name != this.transform.name)
         {
             humanfront.GetComponent<PlayerBehaviour>().humanBack = humanBack;
@@ -88,8 +92,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
 
         }
         playerParent.humans.Remove(this.transform);
-
-        //Destroy(this);
+        GetComponent<Ragdoll>().RagdollActivateWithForce(true, transform.position.x - obs.transform.position.x);
+        Destroy(this, 5f);
 
     }
     IEnumerator reMoveToFollowPoint(GameObject human,Transform followPoint)

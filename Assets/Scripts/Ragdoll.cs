@@ -54,4 +54,26 @@ public class Ragdoll : MonoBehaviour
         Rigidbody.isKinematic = false;
         capsuleCollider.enabled = !active;
     }
+    public void RagdollActivateWithForce(bool active,float xDir)
+    {
+        foreach (var collider in childrenCollider)
+            collider.enabled = active;
+        foreach (var rigidb in childrenRigidbody)
+        {
+            rigidb.detectCollisions = active;
+            rigidb.isKinematic = !active;
+            rigidb.AddForce(new Vector3(2 * xDir, 1, 2) * 1000);
+            //rigidb.drag = 10;
+        }
+
+        //rest
+        foreach (var anims in animator)
+        {
+            anims.enabled = !active;
+        }
+
+        Rigidbody.detectCollisions = !active;
+        Rigidbody.isKinematic = false;
+        capsuleCollider.enabled = !active;
+    }
 }

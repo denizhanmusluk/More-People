@@ -10,12 +10,12 @@ public class MoneyCollect : MonoBehaviour
    public GameObject moneyTarget;
     float motionSpeed = 50f;
     public RectTransform moneylabel;
-
+    bool recollect = false;
     void Start()
     {
-        moneyTarget = GameObject.Find("MoneyTarget");
-        moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
-        moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+        //moneyTarget = GameObject.Find("MoneyTarget");
+        //moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+        //moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
 
     }
 
@@ -28,6 +28,10 @@ public class MoneyCollect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            moneyTarget = GameObject.Find("MoneyTarget");
+            moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+            moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+
             CollectActive = true;
             StartCoroutine(moneyCollecting());
         }
@@ -44,14 +48,28 @@ public class MoneyCollect : MonoBehaviour
         if (other.tag == "Player")
         {
             CollectActive = true;
+            if (recollect)
+            {
+                StartCoroutine(moneyCollecting());
+
+            }
         }
     }
 
     IEnumerator moneyCollecting()
     {
-        int moneyCount = moneyList.Count;
+       
+            int moneyCount = moneyList.Count;
+
+        recollect = false;
+
         if (CollectActive)
         {
+            for (int i = 0; i < moneyCount; i++)
+            {
+                moneyList[i].GetComponent<Collider>().enabled = false;
+            }
+
             for (int i = 0; i < moneyCount; i++)
             {
                 GameObject money = moneyList[0];
@@ -61,6 +79,7 @@ public class MoneyCollect : MonoBehaviour
                 yield return new WaitForSeconds(0.02f);
             }
         }
+        recollect = true;
     }
 
     IEnumerator throughlyMoney(Transform money)

@@ -95,9 +95,6 @@ GameObject:
   - component: {fileID: 7389617021989152627}
   - component: {fileID: 7419180310625107709}
   - component: {fileID: 7409180181780615679}
-  - component: {fileID: 7378560094674554637}
-  - component: {fileID: 7378560098345893697}
-  - component: {fileID: 7378560095663356405}
   m_Layer: 0
   m_Name: Streetlight_2B
   m_TagString: Untagged
@@ -166,45 +163,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7378560094674554637
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055100701909315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0628967, y: 0.7079935, z: 0.71}
-  m_Center: {x: 1.3278275, y: 7.8986735, z: 0}
---- !u!65 &7378560098345893697
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055100701909315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.71, y: 0.7079935, z: 3.062897}
-  m_Center: {x: 0, y: 7.8986735, z: 1.327827}
---- !u!65 &7378560095663356405
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055100701909315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 7.6529174, z: 0.8}
-  m_Center: {x: 0, y: 3.8264587, z: 0}
 --- !u!1 &7386055100823744281
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +174,6 @@ GameObject:
   - component: {fileID: 7389617023627094969}
   - component: {fileID: 7419180297838206615}
   - component: {fileID: 7409180182013453617}
-  - component: {fileID: 7378560098146792743}
-  - component: {fileID: 7378560095970015967}
   m_Layer: 0
   m_Name: Streetlight_2A
   m_TagString: Untagged
@@ -286,32 +242,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7378560098146792743
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055100823744281}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 7.6529174, z: 0.8}
-  m_Center: {x: 0, y: 3.8264587, z: 0}
---- !u!65 &7378560095970015967
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055100823744281}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0628967, y: 0.7079935, z: 0.71}
-  m_Center: {x: 1.3278275, y: 7.8986735, z: 0}
 --- !u!1 &7386055103656759165
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +253,6 @@ GameObject:
   - component: {fileID: 7389617019622173941}
   - component: {fileID: 7419180311309672957}
   - component: {fileID: 7409180159328812893}
-  - component: {fileID: 7378560095365094425}
-  - component: {fileID: 7378560097988640013}
   m_Layer: 0
   m_Name: Streetsign_2C
   m_TagString: Untagged
@@ -393,32 +321,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7378560095365094425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103656759165}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 2.7046041, z: 0.1}
-  m_Center: {x: 0, y: 1.3523021, z: 0}
---- !u!65 &7378560097988640013
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103656759165}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.89999986, y: 0.9015455, z: 0.06712049}
-  m_Center: {x: 0, y: 2.4532948, z: 0.099609375}
 --- !u!1 &7386055103819582011
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,9 +332,6 @@ GameObject:
   - component: {fileID: 7389617021350844735}
   - component: {fileID: 7419180300114252659}
   - component: {fileID: 7409180159568755619}
-  - component: {fileID: 7378560096188040259}
-  - component: {fileID: 7378560096264198081}
-  - component: {fileID: 7378560098508235619}
   m_Layer: 0
   m_Name: Streetlight_2B (1)
   m_TagString: Untagged
@@ -501,45 +400,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7378560096188040259
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103819582011}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0628967, y: 0.7079935, z: 0.71}
-  m_Center: {x: 1.3278275, y: 7.8986735, z: 0}
---- !u!65 &7378560096264198081
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103819582011}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.71, y: 0.7079935, z: 3.062897}
-  m_Center: {x: 0, y: 7.8986735, z: 1.327827}
---- !u!65 &7378560098508235619
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103819582011}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 7.6529174, z: 0.8}
-  m_Center: {x: 0, y: 3.8264587, z: 0}
 --- !u!1 &7386055103928612673
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,8 +411,6 @@ GameObject:
   - component: {fileID: 7389617022332996205}
   - component: {fileID: 7419180301433184479}
   - component: {fileID: 7409180157443408333}
-  - component: {fileID: 7378560098092819379}
-  - component: {fileID: 7378560101526143125}
   m_Layer: 0
   m_Name: Streetsign_2B
   m_TagString: Untagged
@@ -621,29 +479,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7378560098092819379
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103928612673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 2.7046041, z: 0.1}
-  m_Center: {x: 0, y: 1.3523021, z: 0}
---- !u!65 &7378560101526143125
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386055103928612673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.89999986, y: 0.6507368, z: 0.06712049}
-  m_Center: {x: 0, y: 2.578699, z: 0.099609375}

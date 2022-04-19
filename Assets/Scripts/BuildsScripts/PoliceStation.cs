@@ -11,9 +11,15 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
     [SerializeField] public int[] EmplCountforUpgrade;
     public Build build;
     public bool isFullCapacity = false;
+    //public TextMeshProUGUI policeText1, policeText2;
     private void Start()
     {
-        outline.fillAmount = 0;
+        build.Text1 = GameManager.Instance.policeText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        build.Text2 = GameManager.Instance.policeText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        build.buildNo = jobId;
+
+        StartCoroutine(startDelay());
+
 
         if (PlayerPrefs.GetInt("policeStationLevel") != 0)
         {
@@ -26,22 +32,41 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
 
         build.buildInit(Globals.policeStationLevel);
 
-        employeCountText.text = Globals.currentPoliceCount.ToString() + "/" + EmplCountforUpgrade[Globals.policeStationLevel].ToString();
-        outline.fillAmount = (float)Globals.currentPoliceCount / (float)EmplCountforUpgrade[Globals.policeStationLevel];
 
-        if (Globals.policeStationLevel == build.levels.Count - 1)
+
+        if (Globals.policeStationLevel == build.levels.Count)
         {
             isFullCapacity = true;
         }
+    }
+    IEnumerator startDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach (var img in GetComponentsInChildren<Image>())
+        {
+            outline = img;
+        }
+        foreach (var txt in GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            employeCountText = txt;
+        }
+        employeCountText.text = Globals.currentPoliceCount.ToString() + "/" + EmplCountforUpgrade[Globals.policeStationLevel].ToString();
+        outline.fillAmount = (float)Globals.currentPoliceCount / (float)EmplCountforUpgrade[Globals.policeStationLevel];
+
+        GameManager.Instance.policeText.transform.parent.gameObject.SetActive(true);
+        GameManager.Instance.policeText.text = employeCountText.text;
+
+     
     }
     public void employeeDrop()
     {
         Globals.currentPoliceCount++;
         PlayerPrefs.SetInt("currentPoliceCount", Globals.currentPoliceCount);
-        outline.fillAmount = (float)Globals.currentPoliceCount / (float)EmplCountforUpgrade[Globals.policeStationLevel];
-
-        employeCountText.text = Globals.currentPoliceCount.ToString() + "/" + EmplCountforUpgrade[Globals.policeStationLevel].ToString();
-
+        if (outline != null && employeCountText != null)
+        {
+            outline.fillAmount = (float)Globals.currentPoliceCount / (float)EmplCountforUpgrade[Globals.policeStationLevel];
+            employeCountText.text = Globals.currentPoliceCount.ToString() + "/" + EmplCountforUpgrade[Globals.policeStationLevel].ToString();
+        }
         if (Globals.currentPoliceCount == EmplCountforUpgrade[Globals.policeStationLevel])
         {
             //levelUp
@@ -60,10 +85,10 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
         Globals.currentPoliceCount = 0;
         PlayerPrefs.SetInt("currentPoliceCount", Globals.currentPoliceCount);
 
-        outline.fillAmount = 0;
 
 
         build.buildInit(Globals.policeStationLevel);
+        StartCoroutine(startDelay());
 
     }
     private void OnTriggerEnter(Collider other)
@@ -77,7 +102,7 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
                 {
                     if (!isFullCapacity)
                     {
-                        if (i + 1 > (EmplCountforUpgrade[Globals.policeStationLevel] - Globals.currentPoliceCount) && (Globals.policeStationLevel == build.levels.Count - 2))
+                        if (i + 1 > (EmplCountforUpgrade[Globals.policeStationLevel] - Globals.currentPoliceCount) && (Globals.policeStationLevel == build.levels.Count - 1))
                         {
                             isFullCapacity = true;
 

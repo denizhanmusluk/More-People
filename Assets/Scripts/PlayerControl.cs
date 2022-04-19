@@ -44,6 +44,10 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     GameObject parent;
     float spd;
     public bool idleControlActive = true;
+    public bool runnerControlActive = false;
+
+    [SerializeField] public GameObject moneyTarget;
+
     private void Awake()
     {
         currentBehaviour = States.idle;
@@ -53,6 +57,10 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     }
     private void Start()
     {
+        moneyTarget = GameObject.Find("MoneyTarget");
+        moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+        moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+
         spd = acceleration;
         //runnerCamera.Priority = 0;
         //idleCamera.Priority = 10;
@@ -78,6 +86,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         GameManager.Instance.Remove_StartObserver(this);
         //moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
         //moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+        playerParent = transform.parent.GetComponent<PlayerParent>();
 
         currentBehaviour = States.runner;
         anim.SetBool("walk" ,true);
@@ -89,16 +98,18 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     IEnumerator startDelay()
     {
         Debug.Log("start game1");
+        anim.SetTrigger("flip");
 
         yield return new WaitForSeconds(1f);
         runnerCamera.Priority = 10;
         idleCamera.Priority = 0;
         runnerToIdleCamera.Priority = 0;
 
+
         Lawyer.SetActive(false);
         Hand.SetActive(true);
         Debug.Log("start game2");
-
+        runnerControlActive = true;
     }
     void forward()
     {
@@ -133,7 +144,10 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
                 break;
             case States.runner:
                 {
-                    runnerControl();
+                    if (runnerControlActive)
+                    {
+                        runnerControl();
+                    }
                 }
                 break;
             case States.idleControl:
@@ -257,7 +271,8 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
             anim.SetBool("walk", false);
         }
     }
-    //private void OnCollisionEnter(Collision other)
+
+    //private void OnTriggerEnter(Collision other)
     //{
     //    if (other.transform.tag == "money")
     //    {
@@ -265,6 +280,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     //        //Score.Instance.scoreUp();
     //        StartCoroutine(targetMotion(other.gameObject));
     //        GameObject moneyPrticle = Instantiate(moneyParticlePrefab, other.transform.position, Quaternion.identity);
+    //        other.transform.GetComponent<Collider>().enabled = false;
     //    }
     //}
 

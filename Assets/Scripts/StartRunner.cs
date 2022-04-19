@@ -24,8 +24,8 @@ public class StartRunner : MonoBehaviour
         {
             counter += Time.deltaTime;
             player.transform.parent.transform.Translate(player.transform.parent.transform.forward * Time.deltaTime * player.GetComponent<PlayerControl>().acceleration);
-            player.transform.parent.transform.position = Vector3.MoveTowards(player.transform.parent.transform.position, new Vector3(0, player.transform.parent.transform.position.y, player.transform.parent.transform.position.z), 2 * Time.deltaTime);
-            player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, new Vector3(0, player.transform.localPosition.y, player.transform.localPosition.z), 2 * Time.deltaTime);
+            player.transform.parent.transform.position = Vector3.MoveTowards(player.transform.parent.transform.position, new Vector3(0, player.transform.parent.transform.position.y, player.transform.parent.transform.position.z), Time.deltaTime);
+            player.transform.localPosition = Vector3.MoveTowards(player.transform.localPosition, new Vector3(0, player.transform.localPosition.y, player.transform.localPosition.z), Time.deltaTime);
             player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.Euler(player.transform.eulerAngles.x, 0, player.transform.eulerAngles.z), 100 * Time.deltaTime);
 
             yield return null;

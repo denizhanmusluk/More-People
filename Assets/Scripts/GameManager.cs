@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     [SerializeField] GameObject successPanel;
     [SerializeField] GameObject restartButton;
     [SerializeField] GameObject ProgressBar;
-    [SerializeField] GameObject gamePanel;
+    [SerializeField] Image moneyPanel;
+    [SerializeField] GameObject buildPanel;
     public TextMeshProUGUI moneyLabel;
     
 
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     public LevelManager lvlManager;
     //[SerializeField] CinemachineVirtualCamera camFirst, camMain;
     //[SerializeField] GameObject confetti;
+
+
+    [SerializeField] public TextMeshProUGUI doctorText, policeText, farmerText, teacheText;
     void Awake()
     {
         if (Instance == null)
@@ -44,7 +48,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         Globals.moneyAmount = Globals.moneyAmount + miktar;
         LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
         {
-            moneyLabel.text = "$" + val.ToString("N0");
+            moneyLabel.text = val.ToString("N0");
         });//.setOnComplete(() =>{});
         PlayerPrefs.SetInt("money", Globals.moneyAmount);
 
@@ -52,16 +56,27 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     void Start()
     {
         Globals.moneyAmount = PlayerPrefs.GetInt("money");
+        moneyPanel.enabled = true;
 
+        doctorText.transform.parent.gameObject.SetActive(false);
+        policeText.transform.parent.gameObject.SetActive(false);
+        farmerText.transform.parent.gameObject.SetActive(false); 
+        teacheText.transform.parent.gameObject.SetActive(false);
         startButton.SetActive(true);
         successPanel.SetActive(false);
         failPanel.SetActive(false);
-        gamePanel.SetActive(true);
+        buildPanel.SetActive(true);
         Add_WinObserver(this);
         Add_LoseObserver(this);
         Add_FinishObserver(this);
         Add_RunnerStartObserver(this);
         moneyLabel.text =Globals.moneyAmount.ToString();
+        StartCoroutine(gamePanelSet(false));
+    }
+    IEnumerator gamePanelSet(bool active)
+    {
+        yield return new WaitForSeconds(0.1f);
+        moneyPanel.enabled = active;
 
     }
     public void moneyUp(int banknotVal)
@@ -80,6 +95,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
             PlayerPrefs.SetInt("currentPoliceCount", 0);
             PlayerPrefs.SetInt("currentFarmerCount", 0);
             PlayerPrefs.SetInt("farmvillelevel", 0);
+            PlayerPrefs.SetInt("universityLevel", 0);
+            PlayerPrefs.SetInt("currentTeacherCount", 0);
+
             PlayerPrefs.SetInt("money", 0);
 
             PlayerPrefs.SetInt("levelIndex", 1);
@@ -105,6 +123,12 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         Globals.finish = false;
         startButton.SetActive(false);
         Notify_GameStartObservers();
+        yield return new WaitForSeconds(1f);
+
+        //doctorText.text = Globals.currentDoctorCount / 
+        //    policeText.text 
+        //    farmerText.text
+        //    teacheText.text
     }
     public void RestartButton()
     {
@@ -119,7 +143,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
    public void finishRunner()
     {
-    
+        moneyPanel.enabled = true;
+            buildPanel.SetActive(false);
+
     }
     public void runnerStar()
     {
@@ -143,6 +169,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         Globals.finish = false;
         startButton.SetActive(false);
         StartCoroutine(levelLoad());
+        buildPanel.SetActive(true);
+        moneyPanel.enabled = false;
+
 
     }
     public void NextLevelbutton()
@@ -273,7 +302,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
     public void GameEnd()
     {
-        gamePanel.SetActive(false);
+        moneyPanel.enabled = false;
 
     }
 

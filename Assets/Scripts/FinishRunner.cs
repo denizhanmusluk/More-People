@@ -17,6 +17,7 @@ public class FinishRunner : MonoBehaviour
             playerControl.idleCamera.Priority = 0;
             playerControl.runnerCamera.Priority = 0;
             playerControl.runnerToIdleCamera.Priority = 10;
+
             StartCoroutine(CameraChange());
             for (int i = 0; i < playerParent.humans.Count; i++)
             {
@@ -40,6 +41,11 @@ public class FinishRunner : MonoBehaviour
         playerControl.runnerToIdleCamera.Priority = 0;
         playerControl.Lawyer.SetActive(true);
         playerControl.Hand.SetActive(false);
+        playerControl.anim.SetBool("walk", true);
+
+        yield return new WaitForSeconds(0.2f);
+
+        playerControl.anim.SetTrigger("flip");
 
     }
 }
