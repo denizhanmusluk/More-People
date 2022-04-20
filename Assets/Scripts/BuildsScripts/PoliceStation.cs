@@ -11,6 +11,7 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
     [SerializeField] public int[] EmplCountforUpgrade;
     public Build build;
     public bool isFullCapacity = false;
+    PlayerParent playerparent;
     //public TextMeshProUGUI policeText1, policeText2;
     private void Start()
     {
@@ -74,9 +75,14 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
             hospitalLevelUp();
         }
 
+        StartCoroutine(targetSelectDelay());
+    }
+    IEnumerator targetSelectDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        playerparent.UItargetSelect();
 
     }
-
     void hospitalLevelUp()
     {
         Globals.policeStationLevel++;
@@ -95,7 +101,7 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
     {
         if (other.tag == "Player")
         {
-            PlayerParent playerparent = other.transform.parent.GetComponent<PlayerParent>();
+            playerparent = other.transform.parent.GetComponent<PlayerParent>();
             for (int i = 1; i < playerparent.humans.Count; i++)
             {
                 if (jobId == playerparent.humans[i].GetComponent<Employee>().jobId)

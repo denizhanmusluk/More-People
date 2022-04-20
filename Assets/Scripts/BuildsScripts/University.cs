@@ -11,6 +11,7 @@ public class University : MonoBehaviour, IEmployeeDropping
     [SerializeField] public int[] EmplCountforUpgrade;
     public Build build;
     public bool isFullCapacity = false;
+    PlayerParent playerparent;
     private void Start()
     {
         build.Text1 = FindObjectOfType<GameManager>().teacheText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -70,8 +71,14 @@ public class University : MonoBehaviour, IEmployeeDropping
             Destroy(build.loadedBuild);
             hospitalLevelUp();
         }
+        StartCoroutine(targetSelectDelay());
     }
+    IEnumerator targetSelectDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        playerparent.UItargetSelect();
 
+    }
     void hospitalLevelUp()
     {
         Globals.universityLevel++;
@@ -90,7 +97,7 @@ public class University : MonoBehaviour, IEmployeeDropping
     {
         if (other.tag == "Player")
         {
-            PlayerParent playerparent = other.transform.parent.GetComponent<PlayerParent>();
+            playerparent = other.transform.parent.GetComponent<PlayerParent>();
             for (int i = 1; i < playerparent.humans.Count; i++)
             {
                 if (jobId == playerparent.humans[i].GetComponent<Employee>().jobId)

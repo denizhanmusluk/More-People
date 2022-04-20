@@ -37,8 +37,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
             {
                 Destroy(human.GetComponent<PeopleHit>());
             }
-            humanfront = human;
-            human.GetComponent<PlayerBehaviour>().humanBack = this.gameObject;
+            //humanfront = human;
+            //human.GetComponent<PlayerBehaviour>().humanBack = this.gameObject;
             StartCoroutine(moveToFollowPoint(human));
 
             transform.parent.GetComponent<PlayerParent>().throughlyScale();
@@ -55,6 +55,10 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         Transform latestHuaman = playerParent.humans[stackCount-1];
         latestFollowPoint = latestHuaman.GetComponent<PlayerBehaviour>().followPoint;
         playerParent.humans.Add(human.transform);
+
+        human.GetComponent<PlayerBehaviour>().humanBack = latestHuaman.gameObject;
+
+        latestHuaman.GetComponent<PlayerBehaviour>().humanfront = human;
         while (Vector3.Distance(human.transform.position, new Vector3(latestFollowPoint.position.x, human.transform.position.y, latestFollowPoint.position.z)) > 0.1f)
         {
             human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(latestFollowPoint.position.x, human.transform.position.y , latestFollowPoint.position.z) , 10 * Time.deltaTime);
@@ -65,10 +69,11 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         StartCoroutine(following(human, latestFollowPoint));
 
     }
+
     IEnumerator following(GameObject human, Transform followPoint)
     {
-        yield return null;
         runnerActive = true;
+        yield return null;
         while (runnerActive)
         {
             //human.transform.position = Vector3.MoveTowards(human.transform.position, followPoint.position, (Mathf.Abs(playerParent.horizontalFollowSpeed) + 10 ) * 0.8f * Time.deltaTime);
@@ -87,13 +92,13 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         if (playerParent.humans[playerParent.humans.Count - 1].name != this.transform.name)
         {
             humanfront.GetComponent<PlayerBehaviour>().humanBack = humanBack;
-            humanBack.GetComponent<PlayerBehaviour>().followTarget(humanfront, humanBack.GetComponent<PlayerBehaviour>().followPoint);
             humanBack.GetComponent<PlayerBehaviour>().humanfront = humanfront;
+            humanBack.GetComponent<PlayerBehaviour>().followTarget(humanBack.GetComponent<PlayerBehaviour>().humanfront, humanBack.GetComponent<PlayerBehaviour>().followPoint);
 
         }
         playerParent.humans.Remove(this.transform);
         GetComponent<Ragdoll>().RagdollActivateWithForce(true, transform.position.x - obs.transform.position.x);
-        Destroy(this, 5f);
+        Destroy(this);
 
     }
     IEnumerator reMoveToFollowPoint(GameObject human,Transform followPoint)

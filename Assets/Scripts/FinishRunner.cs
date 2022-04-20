@@ -17,6 +17,7 @@ public class FinishRunner : MonoBehaviour
             playerControl.idleCamera.Priority = 0;
             playerControl.runnerCamera.Priority = 0;
             playerControl.runnerToIdleCamera.Priority = 10;
+            playerParent.UItargetSelect();
 
             StartCoroutine(CameraChange());
             for (int i = 0; i < playerParent.humans.Count; i++)

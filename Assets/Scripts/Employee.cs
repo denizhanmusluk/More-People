@@ -70,6 +70,7 @@ public class Employee : MonoBehaviour
         else
         {
             buildTarget.transform.parent.GetComponent<IEmployeeDropping>().employeeDrop();
+
             Player.GetComponent<PlayerParent>().humans.Remove(this.gameObject.transform);
             Destroy(this.gameObject);
         }

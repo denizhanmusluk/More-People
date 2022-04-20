@@ -17,6 +17,8 @@ public class BallHit : MonoBehaviour
     {
         if (other.gameObject.GetComponent<IDamageble>() != null && other.gameObject.GetComponent<PlayerControl>() == null)
         {
+            Debug.Log("hit obs" + other.transform.name);
+
             GetComponent<Collider>().enabled = false;
 
             other.gameObject.GetComponent<IDamageble>().hitObstacle(gameObject);
@@ -36,7 +38,6 @@ public class BallHit : MonoBehaviour
             //        Debug.Log("game over");
             //    }
             //}
-
         }
     }
     IEnumerator obstacleDest()

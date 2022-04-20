@@ -37,7 +37,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
         player = GameObject.Find("Player");
         while (spawnActive)
         {
-            Debug.Log("spawn active");
+            //Debug.Log("spawn active");
 
             if (Vector3.Distance(player.transform.position,transform.position) < 15f)
             {

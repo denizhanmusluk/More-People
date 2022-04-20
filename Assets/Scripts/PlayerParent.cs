@@ -8,6 +8,7 @@ public class PlayerParent : MonoBehaviour
     [SerializeField] public List<Transform> humans;
     public float horizontalFollowSpeed;
     public NavMeshAgent agent;
+    public UIdirection direction;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -42,5 +43,16 @@ public class PlayerParent : MonoBehaviour
         }
         hmn.localScale = new Vector3(firstSize, firstSize, firstSize);
 
+    }
+   public void UItargetSelect()
+    {
+        if (humans.Count > 1)
+        {
+            direction.selectTarget(humans[humans.Count - 1].GetComponent<Employee>().jobId, transform);
+        }
+        else
+        {
+            direction.selectTarget(0, transform);
+        }
     }
 }
