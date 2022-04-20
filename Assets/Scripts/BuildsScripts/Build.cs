@@ -18,7 +18,11 @@ public class Build : MonoBehaviour,IBuild
     bool colorIndicate = false;
 
     public TextMeshProUGUI Text1, Text2;
-    Sequence sequence ,sequence2;
+    Sequence sequence, sequence2, sequence3;
+    [SerializeField] public MeshRenderer buildMesh;
+    [SerializeField] public Material firstMaterial;
+    [SerializeField] public Material troubleMaterial;
+
     private void Start()
     {
         TroubleManager.Instance.Add_TroubleObserver(this);
@@ -29,7 +33,10 @@ public class Build : MonoBehaviour,IBuild
  
         sequence = DOTween.Sequence();
         sequence2 = DOTween.Sequence();
-
+        sequence3 = DOTween.Sequence();
+        sequence.Kill();
+        sequence2.Kill();
+        sequence3.Kill();
     }
     public void buildInit(int level)
     {
@@ -45,7 +52,8 @@ public class Build : MonoBehaviour,IBuild
             //SpawnManager.Instance.transform.GetChild(i).GetComponent<NPCSpawner>().target.Add(transform.GetChild(0).transform);
         }
         //SpawnManager.Instance.target.Add(transform.GetChild(0).transform);
-
+        buildMesh= loadedBuild.GetComponent<MoneyCreating>().buildMesh;
+        firstMaterial = buildMesh.material;
         StartCoroutine(buildScaling());
     }
     public void troubleCheck()
@@ -84,17 +92,39 @@ public class Build : MonoBehaviour,IBuild
                 }
             }
             textColorSet();
+            buildMesh.material = troubleMaterial;
+            BuildColorSet();
+            TroubleManager.Instance.Remove_TroubleObserver(this);
 
+            Debug.Log("deneme");
         }
         else
         {
             sequence.Kill();
             sequence2.Kill();
+            sequence3.Kill();
             Text1.color = Color.white;
             Text2.color = Color.white;
+            //buildMesh.material.color = Color.white;
         }
         //TroubleManager.Instance.Remove_TroubleObserver(this);
 
+    }
+    void BuildColorSet()
+    {
+
+        //buildMesh.material.color 
+        sequence3.Append(buildMesh.material.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo));
+
+        sequence3.AppendInterval(0f);
+        sequence3.SetLoops(1, LoopType.Yoyo);
+        sequence3.SetRelative(true);
+
+
+
+
+        //Text1.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
+        //Text2.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
     }
     void textColorSet()
     {
@@ -126,7 +156,7 @@ public class Build : MonoBehaviour,IBuild
             yield return new WaitForSeconds(0.05f);
         }
 
-        yield return new WaitForSeconds(thisBuildingLevel);
+        yield return new WaitForSeconds(thisBuildingLevel * Random.Range(0, 1f));
         Debug.Log("Globals.maxBuildLevel" + Globals.maxBuildLevel);
         Debug.Log("thisBuildingLevel" + thisBuildingLevel);
         if (Globals.maxBuildLevel < thisBuildingLevel)

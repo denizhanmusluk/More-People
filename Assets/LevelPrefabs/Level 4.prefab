@@ -482,6 +482,15 @@ MonoBehaviour:
   - {fileID: 8798938260785774459, guid: 6ef40655476755544b16c4813a6ec820, type: 3}
   - {fileID: 4268223975366019161, guid: cbd61f9ee9a624d45be825561e009986, type: 3}
   loadedBuild: {fileID: 0}
+  thisBuildingLevel: 0
+  customerList: []
+  troubleActive: 0
+  buildNo: 0
+  Text1: {fileID: 0}
+  Text2: {fileID: 0}
+  buildMesh: {fileID: 0}
+  firstMaterial: {fileID: 0}
+  troubleMaterial: {fileID: 0}
 --- !u!33 &8820200405953672626
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -508,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ffa4254609c88cf47a6ee9342ec6080a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4585,6 +4594,8 @@ MonoBehaviour:
   anim: {fileID: 6747353763801136752}
   speed: 10
   idleControlActive: 1
+  runnerControlActive: 0
+  moneyTarget: {fileID: 0}
 --- !u!114 &1580326248308064859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,6 +4611,8 @@ MonoBehaviour:
   followPoint: {fileID: 1580326248173249905}
   latestFollowPoint: {fileID: 0}
   runnerActive: 1
+  humanfront: {fileID: 0}
+  humanBack: {fileID: 0}
 --- !u!1 &1580326248310318687
 GameObject:
   m_ObjectHideFlags: 0
@@ -26482,7 +26495,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ffa4254609c88cf47a6ee9342ec6080a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26534,6 +26547,15 @@ MonoBehaviour:
   - {fileID: 2650331855074248860, guid: b155c95a1ebdaeb45890f7ef133844fb, type: 3}
   - {fileID: 1632939561944334731, guid: 814cb4d7076e95940bec9406b02d5f70, type: 3}
   loadedBuild: {fileID: 0}
+  thisBuildingLevel: 0
+  customerList: []
+  troubleActive: 0
+  buildNo: 0
+  Text1: {fileID: 0}
+  Text2: {fileID: 0}
+  buildMesh: {fileID: 0}
+  firstMaterial: {fileID: 0}
+  troubleMaterial: {fileID: 2100000, guid: f71cd31eb796c3b4e94e7ad7a9361833, type: 2}
 --- !u!54 &4212717541145348080
 Rigidbody:
   m_ObjectHideFlags: 0

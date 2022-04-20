@@ -14,8 +14,8 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
     //public TextMeshProUGUI policeText1, policeText2;
     private void Start()
     {
-        build.Text1 = GameManager.Instance.policeText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
-        build.Text2 = GameManager.Instance.policeText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        build.Text1 = FindObjectOfType<GameManager>().policeText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        build.Text2 = FindObjectOfType<GameManager>().policeText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         build.buildNo = jobId;
 
         StartCoroutine(startDelay());

@@ -13,8 +13,8 @@ public class University : MonoBehaviour, IEmployeeDropping
     public bool isFullCapacity = false;
     private void Start()
     {
-        build.Text1 = GameManager.Instance.teacheText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
-        build.Text2 = GameManager.Instance.teacheText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
+        build.Text1 = FindObjectOfType<GameManager>().teacheText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        build.Text2 = FindObjectOfType<GameManager>().teacheText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         build.buildNo = jobId;
 
         StartCoroutine(startDelay());

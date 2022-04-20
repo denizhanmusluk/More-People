@@ -14,6 +14,8 @@ public class MoneyCreating : MonoBehaviour
     [SerializeField] Transform[] moneyInstantiatePoint;
     //[SerializeField] Transform firstInstPoint, firstInstPoint2;
     [SerializeField] MoneyCollect moneyCollecting;
+    [SerializeField] public MeshRenderer buildMesh;
+
     void Start()
     {
         StartCoroutine(SpawnMoney());

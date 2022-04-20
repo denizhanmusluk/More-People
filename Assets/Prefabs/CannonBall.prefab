@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3912481311930905016}
   - component: {fileID: 2008692234169563880}
   - component: {fileID: 715048404856432096}
-  - component: {fileID: 5858184576846143671}
+  - component: {fileID: 520521140177852572}
   m_Layer: 0
   m_Name: bot
   m_TagString: Untagged
@@ -301,19 +301,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf17a60a69c68f43857b37c10915739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &5858184576846143671
-BoxCollider:
+--- !u!135 &520521140177852572
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7397290075666972067}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.51047754, y: 1.7212731, z: 4.933869}
-  m_Center: {x: 0.06823762, y: -0.41396117, z: 0.33371818}
+  m_Radius: 0.83
+  m_Center: {x: 0.015148693, y: 0.5272388, z: 0.3337146}
 --- !u!1 &8483477094350796819
 GameObject:
   m_ObjectHideFlags: 0

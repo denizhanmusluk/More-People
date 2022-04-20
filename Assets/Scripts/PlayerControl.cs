@@ -276,6 +276,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     //{
     //    if (other.transform.tag == "money")
     //    {
+    //        Debug.Log("money coll");
     //        //other.gameObject.GetComponent<Player>().MoneyUpdate(30);
     //        //Score.Instance.scoreUp();
     //        StartCoroutine(targetMotion(other.gameObject));

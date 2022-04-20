@@ -17,8 +17,9 @@ public class BallHit : MonoBehaviour
     {
         if (other.gameObject.GetComponent<IDamageble>() != null && other.gameObject.GetComponent<PlayerControl>() == null)
         {
-            other.gameObject.GetComponent<IDamageble>().hitObstacle(gameObject);
             GetComponent<Collider>().enabled = false;
+
+            other.gameObject.GetComponent<IDamageble>().hitObstacle(gameObject);
             //playerParent = other.gameObject.transform.parent.gameObject;
             //if (Globals.rage)
             //{

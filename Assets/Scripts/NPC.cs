@@ -219,7 +219,7 @@ public class NPC : MonoBehaviour
 
         guilty.GetComponent<Animator>().SetBool("gun", false);
 
-        guilty.GetComponent<guilty>().destination = SpawnManager.Instance.transform.GetChild(Random.Range(0, SpawnManager.Instance.transform.childCount)).transform;
+        guilty.GetComponent<guilty>().destination = FindObjectOfType<SpawnManager>().transform.GetChild(Random.Range(0, FindObjectOfType<SpawnManager>().transform.childCount)).transform;
 
         GetComponent<Ragdoll>().RagdollActivate(true);
         currentSelection = States.dead;
