@@ -3009,7 +3009,6 @@ MonoBehaviour:
   troubleActive: 0
   buildNo: 0
   Text1: {fileID: 0}
-  Text2: {fileID: 0}
   buildMesh: {fileID: 0}
   firstMaterial: {fileID: 0}
   troubleMaterial: {fileID: 2100000, guid: f71cd31eb796c3b4e94e7ad7a9361833, type: 2}
@@ -4771,7 +4770,7 @@ MonoBehaviour:
   Xmove: 0
   Steer: 0
   Speed: 0
-  bounding: 3
+  bounding: 2.6
   playerParents: {fileID: 7320966188072580699}
   runnerCamera: {fileID: 7320966188140284966}
   idleCamera: {fileID: 7320966189198611840}
@@ -6938,7 +6937,6 @@ MonoBehaviour:
   troubleActive: 0
   buildNo: 0
   Text1: {fileID: 0}
-  Text2: {fileID: 0}
   buildMesh: {fileID: 0}
   firstMaterial: {fileID: 0}
   troubleMaterial: {fileID: 2100000, guid: ffa4254609c88cf47a6ee9342ec6080a, type: 2}
@@ -8574,7 +8572,7 @@ PrefabInstance:
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
@@ -10217,7 +10215,7 @@ PrefabInstance:
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
@@ -10646,7 +10644,7 @@ PrefabInstance:
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
@@ -10973,7 +10971,7 @@ PrefabInstance:
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
@@ -12848,7 +12846,7 @@ PrefabInstance:
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7155096657824804790, guid: 0286444a815100d4baa3f3f99f39a9b1,
         type: 3}

@@ -1648,7 +1648,6 @@ MonoBehaviour:
   troubleActive: 0
   buildNo: 0
   Text1: {fileID: 0}
-  Text2: {fileID: 0}
   buildMesh: {fileID: 0}
   firstMaterial: {fileID: 0}
   troubleMaterial: {fileID: 2100000, guid: f71cd31eb796c3b4e94e7ad7a9361833, type: 2}
@@ -5417,7 +5416,7 @@ MonoBehaviour:
   Xmove: 0
   Steer: 0
   Speed: 0
-  bounding: 3
+  bounding: 2.6
   playerParents: {fileID: 9059814673955975105}
   runnerCamera: {fileID: 9059814672413038012}
   idleCamera: {fileID: 9059814672938978330}
@@ -9984,7 +9983,7 @@ PrefabInstance:
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
@@ -10143,7 +10142,7 @@ PrefabInstance:
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.62
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
@@ -10218,7 +10217,7 @@ PrefabInstance:
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.46
+      value: -1.75
       objectReference: {fileID: 0}
     - target: {fileID: 8703607732077639111, guid: 154a6caf85dbb724399843e4d1e07ab9,
         type: 3}
