@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
 
 
     [SerializeField] public TextMeshProUGUI doctorText, policeText, farmerText, teacheText;
+
+
     void Awake()
     {
         if (Instance == null)
@@ -73,6 +75,36 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         moneyLabel.text =Globals.moneyAmount.ToString();
         StartCoroutine(gamePanelSet(false));
     }
+    ///////////////////////////////////////////////////
+    IEnumerator scaleBagels()
+    {
+        //int humanCount = bagels.Count;
+        for (int i = 0; i < buildPanel.transform.GetChild(0).transform.childCount; i++)
+        {
+            StartCoroutine(Scaling(buildPanel.transform.GetChild(0).transform.GetChild(i).transform));
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+    IEnumerator Scaling(Transform bagel)
+    {
+        float counter = 0f;
+        float firstSize = 0.75f;
+        float sizeDelta;
+        while (counter < Mathf.PI)
+        {
+            counter += 10 * Time.deltaTime;
+            sizeDelta = 1f - Mathf.Abs(Mathf.Cos(counter));
+            sizeDelta /= 2f;
+            bagel.GetComponent<RectTransform>().localScale = new Vector3(firstSize + sizeDelta, firstSize + sizeDelta, firstSize + sizeDelta);
+
+            yield return null;
+        }
+        bagel.localScale = new Vector3(firstSize, firstSize, firstSize);
+    }
+    ///////////////////////////////////////////////////
+
     IEnumerator gamePanelSet(bool active)
     {
         yield return new WaitForSeconds(0.1f);
@@ -114,6 +146,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
             StartCoroutine(startDelay());
 
             ProgressBar.SetActive(true);
+            StartCoroutine(scaleBagels());
+
+
         }
     }
     IEnumerator startDelay()
@@ -171,6 +206,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         StartCoroutine(levelLoad());
         buildPanel.SetActive(true);
         moneyPanel.enabled = false;
+        StartCoroutine(scaleBagels());
 
 
     }

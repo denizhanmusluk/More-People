@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
     public GameObject loadedLevel;
     [SerializeField] List<GameObject> levels;
     //[SerializeField] public int LevelCount;
+    public TextMeshProUGUI levelText;
 
     void Start()
     {
@@ -19,6 +21,7 @@ public class LevelManager : MonoBehaviour
         if (PlayerPrefs.GetInt("levelIndex") != 0)
         {
             Globals.currentLevel = PlayerPrefs.GetInt("levelIndex");
+            levelText.text = Globals.currentLevel.ToString();
         }
         else
         {

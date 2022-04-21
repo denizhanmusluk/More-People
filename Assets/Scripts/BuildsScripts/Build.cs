@@ -17,7 +17,7 @@ public class Build : MonoBehaviour,IBuild
 
     bool colorIndicate = false;
 
-    public TextMeshProUGUI Text1, Text2;
+    public TextMeshProUGUI Text1;
     Sequence sequence, sequence2, sequence3;
     [SerializeField] public MeshRenderer buildMesh;
     [SerializeField] public Material firstMaterial;
@@ -103,8 +103,7 @@ public class Build : MonoBehaviour,IBuild
             sequence.Kill();
             sequence2.Kill();
             sequence3.Kill();
-            Text1.color = Color.white;
-            Text2.color = Color.white;
+            //Text1.color = Color.white;
             //buildMesh.material.color = Color.white;
         }
         //TroubleManager.Instance.Remove_TroubleObserver(this);
@@ -131,15 +130,15 @@ public class Build : MonoBehaviour,IBuild
 
 
         sequence.Append(Text1.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo));
-        sequence2.Append(Text2.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo));
+        //sequence2.Append(Text2.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo));
 
         sequence.AppendInterval(0f);
         sequence.SetLoops(1, LoopType.Yoyo);
         sequence.SetRelative(true);
 
-        sequence2.AppendInterval(0f);
-        sequence2.SetLoops(1, LoopType.Yoyo);
-        sequence2.SetRelative(true);
+        //sequence2.AppendInterval(0f);
+        //sequence2.SetLoops(1, LoopType.Yoyo);
+        //sequence2.SetRelative(true);
 
 
 

@@ -872,7 +872,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65d943d8ba5c52e4298c4623564f5a44, type: 2}
+  - {fileID: 2100000, guid: ed6617f98c77404479a283bc3a45df15, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8521,6 +8521,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1966182523584993947}
     m_Modifications:
+    - target: {fileID: 2987130047363943537, guid: a487c3dadbaa4534db3d436652e4e0b3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 172
+      objectReference: {fileID: 0}
     - target: {fileID: 3998318713944784787, guid: a487c3dadbaa4534db3d436652e4e0b3,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -8600,6 +8605,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925818768466401092, guid: a487c3dadbaa4534db3d436652e4e0b3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a487c3dadbaa4534db3d436652e4e0b3, type: 3}
