@@ -32,15 +32,15 @@ public class MoneyCreating : MonoBehaviour
                 material.GetComponent<Banknot>().banknotValue = banknotValue;
                 float clothRow = moneyCollecting.moneyNum / moneyInstantiatePoint.Length;
                 //worker.GetComponent<Animator>().SetTrigger("work");
-             
+                material.GetComponent<Banknot>().mnyCollect = moneyCollecting;
 
-                //while (Vector3.Distance(material.transform.position, firstInstPoint2.position) > 0.1f)
-                //{
-                //    material.transform.position = Vector3.MoveTowards(material.transform.position, firstInstPoint2.position, 1.5f * Time.deltaTime);
-                //    material.transform.rotation = Quaternion.RotateTowards(material.transform.rotation, firstInstPoint2.rotation, 75 * Time.deltaTime);
-                //    yield return null;
-                //}
-                Vector3 targetPos = moneyInstantiatePoint[moneyCollecting.moneyNum % moneyInstantiatePoint.Length].position + new Vector3(0, (clothRow / 4), 0);
+                   //while (Vector3.Distance(material.transform.position, firstInstPoint2.position) > 0.1f)
+                   //{
+                   //    material.transform.position = Vector3.MoveTowards(material.transform.position, firstInstPoint2.position, 1.5f * Time.deltaTime);
+                   //    material.transform.rotation = Quaternion.RotateTowards(material.transform.rotation, firstInstPoint2.rotation, 75 * Time.deltaTime);
+                   //    yield return null;
+                   //}
+                   Vector3 targetPos = moneyInstantiatePoint[moneyCollecting.moneyNum % moneyInstantiatePoint.Length].position + new Vector3(0, (clothRow / 4), 0);
                 //while (Vector3.Distance(material.transform.position, targetPos) > 0.1f)
                 //{
                 //    material.transform.position = Vector3.MoveTowards(material.transform.position, targetPos, 15 * Time.deltaTime);

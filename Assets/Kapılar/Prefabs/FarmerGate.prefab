@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   employeeSkinPrefab:
   - {fileID: 3477187842848970516, guid: 62cd3b5c87dd7a94885cd78137c79692, type: 3}
-  jobId: 1
+  jobId: 3
 --- !u!65 &5089330761702800156
 BoxCollider:
   m_ObjectHideFlags: 0

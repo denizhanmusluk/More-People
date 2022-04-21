@@ -26,34 +26,34 @@ public class MoneyCollect : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            moneyTarget = GameObject.Find("MoneyTarget");
-            moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
-            moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
+        //if (other.tag == "Player")
+        //{
+        //    moneyTarget = GameObject.Find("MoneyTarget");
+        //    moneylabel = GameObject.Find("moneyLabel").GetComponent<RectTransform>();
+        //    moneyTarget.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(moneylabel.transform.position.x, moneylabel.transform.position.y, Camera.main.WorldToScreenPoint(moneyTarget.transform.position).z));
 
-            CollectActive = true;
-            StartCoroutine(moneyCollecting());
-        }
+        //    CollectActive = true;
+        //    StartCoroutine(moneyCollecting());
+        //}
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            CollectActive = false;
-        }
+        //if (other.tag == "Player")
+        //{
+        //    CollectActive = false;
+        //}
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            CollectActive = true;
-            if (recollect)
-            {
-                StartCoroutine(moneyCollecting());
+        //if (other.tag == "Player")
+        //{
+        //    CollectActive = true;
+        //    if (recollect)
+        //    {
+        //        StartCoroutine(moneyCollecting());
 
-            }
-        }
+        //    }
+        //}
     }
 
     IEnumerator moneyCollecting()
