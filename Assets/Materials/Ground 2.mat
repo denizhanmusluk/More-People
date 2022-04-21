@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cit
+  m_Name: Ground 2
   m_Shader: {fileID: 4800000, guid: ccfc7d68845db8341944b3091b59be55, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,9 +40,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d750df71925ed4cc6832caf52a9594e6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 58.24, y: 51.1}
+        m_Offset: {x: 0.34, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,18 +59,6 @@ Material:
         m_Texture: {fileID: 2800000, guid: abc83c21d57d4a74cabe12065fa1a8b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureRamp:
-        m_Texture: {fileID: 2800000, guid: bd4c7918ddba6d7419b470c676386dd4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample3:
-        m_Texture: {fileID: 2800000, guid: d750df71925ed4cc6832caf52a9594e6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -82,20 +70,16 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.001
-    - _OutlineWidth2: 0.0065
     - _Parallax: 0.02
-    - _RampSmooth: 0.31
-    - _RampThreshold: 0.72
+    - _RampSmooth: 0.365
+    - _RampThreshold: 0.557
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 1
     m_Colors:
-    - _Color: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 1}
+    - _Color: {r: 0.9811321, g: 0.7856732, b: 0.5507298, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
-    - _OutlineColor: {r: 0.17647058, g: 0.17647058, b: 0.17647058, a: 1}
-    - _SColor: {r: 0.45882356, g: 1, b: 0.454902, a: 1}
+    - _HColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    - _SColor: {r: 0, g: 0, b: 0, a: 1}

@@ -36,8 +36,6 @@ public class PeopleHit : MonoBehaviour
             anim.SetBool("walk",true);
 
             other.gameObject.GetComponent<IDamageble>().hitPeople(gameObject);
-            Debug.Log("collision");
-
         }
 
     }

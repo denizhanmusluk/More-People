@@ -15,8 +15,6 @@ public class Banknot : MonoBehaviour
             mnyCollect.moneyNum--;
             transform.GetComponent<Collider>().enabled = false;
             //other.gameObject.GetComponent<Player>().MoneyUpdate(30);
-            Debug.Log("money collect");
-
             GameManager.Instance.moneyUp(banknotValue);
             target = other.GetComponent<PlayerControl>().moneyTarget;
             Destroy(GetComponent<Rigidbody>());

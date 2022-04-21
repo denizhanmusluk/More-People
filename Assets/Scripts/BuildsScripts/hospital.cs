@@ -69,9 +69,11 @@ public class hospital : MonoBehaviour,IEmployeeDropping
         }
         if (Globals.currentDoctorCount == EmplCountforUpgrade[Globals.hospitalLevel])
         {
-          
+            if (EmplCountforUpgrade.Length - 1 > Globals.hospitalLevel)
+            {
                 Destroy(build.loadedBuild);
                 hospitalLevelUp();
+            }
         }
         StartCoroutine(targetSelectDelay());
     }

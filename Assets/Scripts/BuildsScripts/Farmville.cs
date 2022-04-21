@@ -71,9 +71,11 @@ public class Farmville : MonoBehaviour, IEmployeeDropping
         }
         if (Globals.currentFarmerCount == EmplCountforUpgrade[Globals.farmvilleLevel])
         {
-
-            Destroy(build.loadedBuild);
-            hospitalLevelUp();
+            if (EmplCountforUpgrade.Length >= Globals.farmvilleLevel)
+            {
+                Destroy(build.loadedBuild);
+                hospitalLevelUp();
+            }
         }
         StartCoroutine(targetSelectDelay());
     }

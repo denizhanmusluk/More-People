@@ -71,8 +71,11 @@ public class PoliceStation : MonoBehaviour, IEmployeeDropping
         if (Globals.currentPoliceCount == EmplCountforUpgrade[Globals.policeStationLevel])
         {
             //levelUp
-            Destroy(build.loadedBuild);
-            hospitalLevelUp();
+            if (EmplCountforUpgrade.Length - 1 > Globals.policeStationLevel)
+            {
+                Destroy(build.loadedBuild);
+                hospitalLevelUp();
+            }
         }
 
         StartCoroutine(targetSelectDelay());

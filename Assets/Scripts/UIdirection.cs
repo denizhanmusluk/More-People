@@ -27,7 +27,6 @@ public class UIdirection : MonoBehaviour
     }
    public void arrowScaleSet()
     {
-        Debug.Log("denemeea");
         sequence.Kill();
         StartCoroutine(arrowLoopScale());
 
@@ -37,7 +36,7 @@ public class UIdirection : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         sequence = DOTween.Sequence();
 
-        sequence.Append(transform.GetComponent<RectTransform>().DOScale(Vector3.one * 1.05f, 0.3f).SetLoops(-1, LoopType.Yoyo));
+        sequence.Append(transform.GetComponent<RectTransform>().DOScale(Vector3.one * 0.4f, 0.3f).SetLoops(-1, LoopType.Yoyo));
 
         sequence.AppendInterval(0f);
         sequence.SetLoops(-1, LoopType.Yoyo);

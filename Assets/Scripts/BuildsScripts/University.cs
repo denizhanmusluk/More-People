@@ -67,9 +67,11 @@ public class University : MonoBehaviour, IEmployeeDropping
         }
         if (Globals.currentTeacherCount == EmplCountforUpgrade[Globals.universityLevel])
         {
-
-            Destroy(build.loadedBuild);
-            hospitalLevelUp();
+            if (EmplCountforUpgrade.Length >= Globals.universityLevel)
+            {
+                Destroy(build.loadedBuild);
+                hospitalLevelUp();
+            }
         }
         StartCoroutine(targetSelectDelay());
     }
