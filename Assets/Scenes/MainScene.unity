@@ -507,7 +507,6 @@ MonoBehaviour:
   policeText: {fileID: 1275065323}
   farmerText: {fileID: 462561378}
   teacheText: {fileID: 674205848}
-  levelText: {fileID: 0}
 --- !u!4 &326211448
 Transform:
   m_ObjectHideFlags: 0
@@ -4786,7 +4785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6131718897346994504}
   m_LocalRotation: {x: 0.40683857, y: 0.000000022228644, z: -0.000000009899801, w: 0.9135001}
-  m_LocalPosition: {x: 0, y: 23.130001, z: -92.34}
+  m_LocalPosition: {x: 0, y: 23.130001, z: -43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6131718898828168147}
