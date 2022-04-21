@@ -47,12 +47,13 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     public bool runnerControlActive = false;
 
     [SerializeField] public GameObject moneyTarget;
-
+    //[SerializeField] GameObject rainParticle;
     private void Awake()
     {
         currentBehaviour = States.idle;
 
         GameManager.Instance.Add_StartObserver(this);
+        //TroubleManager.Instance.Add_TroubleObserver(this);
 
     }
     private void Start()
@@ -270,6 +271,11 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         {
             anim.SetBool("walk", false);
         }
+    }
+
+    public void troubleCheck()
+    {
+        //rainParticle.SetActive(true);
     }
 
     //private void OnTriggerEnter(Collision other)

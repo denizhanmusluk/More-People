@@ -13620,6 +13620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_12 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.64
@@ -13898,6 +13902,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_07 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15962,6 +15970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Mount_02
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ed2b4806696c2d4d9b30ba6b58e980c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3ed2b4806696c2d4d9b30ba6b58e980c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 69.1
@@ -16549,6 +16561,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_08
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17485,6 +17501,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_07
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18891,6 +18911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Mount_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7167edde450ac684ba999fd2cabc6922, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7167edde450ac684ba999fd2cabc6922, type: 3}
       propertyPath: m_LocalPosition.x
       value: -56.2
@@ -19955,6 +19979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_07 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.980343
@@ -20539,6 +20567,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_08 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22172,6 +22204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_08 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.67
@@ -23249,6 +23285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_08 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.15
@@ -23986,6 +24026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_09
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.2
@@ -24230,6 +24274,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_09 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24579,6 +24627,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_05 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26743,6 +26795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_12
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.6
@@ -27092,6 +27148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_08 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eeb542bada83e494da1521ac1466e6b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.1599998
@@ -27250,6 +27310,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 500faa1e8482c774da067d9ac792d249, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27959,6 +28023,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_07 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29726,6 +29794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Mount_04
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fc10daa0963d57049b6938b2f62387b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc10daa0963d57049b6938b2f62387b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 67.4
@@ -30206,6 +30278,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_07 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0ebc808f09de02b4997f4dd99181cd62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31119,6 +31195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Stone_12 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.629997
@@ -31287,6 +31367,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_09 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31795,6 +31879,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_09 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 72d6acfe20bd50e4386ad866378b7f44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32899,6 +32987,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPW_Natures_Mount_Green_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f823a071818175f4f9680ea4b0328443, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f823a071818175f4f9680ea4b0328443, type: 3}
       propertyPath: m_LocalPosition.x
       value: -70.2
@@ -33284,6 +33376,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
       propertyPath: m_Name
       value: SPW_Natures_Stone_12 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ab7b580a776b544e9dbbc8f6b55c47f, type: 3}
       propertyPath: m_LocalPosition.x
