@@ -75,7 +75,7 @@ public class University : MonoBehaviour, IEmployeeDropping
     }
     IEnumerator targetSelectDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         playerparent.UItargetSelect();
 
     }

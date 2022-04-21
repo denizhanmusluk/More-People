@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UIdirection : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class UIdirection : MonoBehaviour
     bool followActive = false;
     Transform player;
     int selectionTarget;
+    public Sequence sequence;
+    private void Start()
+    {
+        sequence = DOTween.Sequence();
+        sequence.Kill();
+    }
     public void selectTarget(int _selectionTarget, Transform _player)
     {
         GetComponent<Image>().enabled = true;
@@ -18,7 +25,28 @@ public class UIdirection : MonoBehaviour
         selectionTarget = _selectionTarget;
         followActive = true;
     }
+   public void arrowScaleSet()
+    {
+        Debug.Log("denemeea");
+        sequence.Kill();
+        StartCoroutine(arrowLoopScale());
 
+    }
+    IEnumerator arrowLoopScale()
+    {
+        yield return new WaitForSeconds(0.5f);
+        sequence = DOTween.Sequence();
+
+        sequence.Append(transform.GetComponent<RectTransform>().DOScale(Vector3.one * 1.05f, 0.3f).SetLoops(-1, LoopType.Yoyo));
+
+        sequence.AppendInterval(0f);
+        sequence.SetLoops(-1, LoopType.Yoyo);
+        sequence.SetRelative(true);
+    }
+    public void seqKill()
+    {
+        sequence.Kill();
+    }
     private void Update()
     {
         if (followActive)
@@ -53,7 +81,7 @@ public class UIdirection : MonoBehaviour
         {
             magnZ = -100;
         }
-        GetComponent<RectTransform>().anchoredPosition = new Vector3(direction.x * 250 * distX + magnX, direction.z * 60 * distZ + magnZ , 0);
+        GetComponent<RectTransform>().anchoredPosition = new Vector3(direction.x * 250 * distX + magnX, direction.z * 57 * distZ + magnZ , 0);
 
 
         float angle;

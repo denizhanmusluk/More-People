@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     [SerializeField] GameObject moneyParticlePrefab;
     Vector3 playerFirstPos;
   public  RectTransform moneylabel;
-    PlayerParent playerParent;
+   public PlayerParent playerParent;
 
 
 

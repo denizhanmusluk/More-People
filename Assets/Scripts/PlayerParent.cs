@@ -53,6 +53,7 @@ public class PlayerParent : MonoBehaviour
         else
         {
             direction.selectTarget(0, transform);
+            direction.arrowScaleSet();
         }
     }
 }

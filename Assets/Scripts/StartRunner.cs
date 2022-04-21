@@ -14,6 +14,7 @@ public class StartRunner : MonoBehaviour
             //idleCamera.Priority = 0;
             StartCoroutine(moving(other.gameObject));
             other.GetComponent<PlayerControl>().idleControlActive = false;
+            other.GetComponent<PlayerControl>().playerParent.direction.seqKill();
         }
     }
     IEnumerator moving(GameObject player)
