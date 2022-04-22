@@ -95,14 +95,21 @@ public class Build : MonoBehaviour,IBuild
             buildMesh.material = troubleMaterial;
             BuildColorSet();
             TroubleManager.Instance.Remove_TroubleObserver(this);
-
-            Debug.Log("deneme");
+            TroubleManager.Instance.Notify_isTroubleObservers();
+            Debug.Log("trouble active");
         }
         else
         {
             sequence.Kill();
             sequence2.Kill();
             sequence3.Kill();
+            if (troubleActive)
+            {
+                troubleActive = false;
+                TroubleManager.Instance.Notify_GameTroubleFixObservers();
+
+                // trouble fixed
+            }
             //Text1.color = Color.white;
             //buildMesh.material.color = Color.white;
         }

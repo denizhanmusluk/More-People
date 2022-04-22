@@ -6,6 +6,8 @@ public class TroubleManager : MonoBehaviour
 {
     public static TroubleManager Instance;
     private List<IBuild> troubleObservers;
+    private List<ITroubleFix> troubleFixObservers;
+    private List<IisTrouble> isTroubleObservers;
 
     private void Awake()
     {
@@ -14,6 +16,8 @@ public class TroubleManager : MonoBehaviour
             Instance = this;
         }
         troubleObservers = new List<IBuild>();
+        troubleFixObservers = new List<ITroubleFix>();
+        isTroubleObservers = new List<IisTrouble>();
     }
 
     #region Trouble Observer
@@ -33,6 +37,49 @@ public class TroubleManager : MonoBehaviour
         {
             if (troubleObservers.Contains(observer))
                 observer.troubleCheck();
+        }
+    }
+    #endregion
+
+    #region Trouble Observer
+    public void Add_TroubleFixObserver(ITroubleFix observer)
+    {
+        troubleFixObservers.Add(observer);
+    }
+
+    public void Remove_TroubleFixObserver(ITroubleFix observer)
+    {
+        troubleFixObservers.Remove(observer);
+    }
+
+    public void Notify_GameTroubleFixObservers()
+    {
+        foreach (ITroubleFix observer in troubleFixObservers.ToArray())
+        {
+            if (troubleFixObservers.Contains(observer))
+                observer.torubleFix();
+        }
+    }
+    #endregion
+
+
+    #region Trouble Observer
+    public void Add_isTroubleObserver(IisTrouble observer)
+    {
+        isTroubleObservers.Add(observer);
+    }
+
+    public void Remove_isTroubleObserver(IisTrouble observer)
+    {
+        isTroubleObservers.Remove(observer);
+    }
+
+    public void Notify_isTroubleObservers()
+    {
+        foreach (IisTrouble observer in troubleFixObservers.ToArray())
+        {
+            if (isTroubleObservers.Contains(observer))
+                observer.isTrouble();
         }
     }
     #endregion
