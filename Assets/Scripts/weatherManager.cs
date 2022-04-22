@@ -10,6 +10,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     [SerializeField] float firstLight = 1.1f, rainLight = 0.6f;
     bool rainCheckActive = true;
     [SerializeField] ParticleSystem rainParticle;
+    [SerializeField] ParticleSystem stormParticle;
     ParticleSystem.EmissionModule rainEmission;
     float rainMaxEmission = 300f;
     void Start()
@@ -29,6 +30,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     {
         GameManager.Instance.Remove_FinishObserver(this);
         GameManager.Instance.Remove_RunnerStartObserver(this);
+        TroubleManager.Instance.Remove_isTroubleObserver(this);
+
         weatherActive = false;
     }
     public void torubleFix()
@@ -40,6 +43,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     {
         troubleLevel++;
         StartCoroutine(rainCheck());
+        Debug.Log("trouble level" + troubleLevel);
+      
     }
     IEnumerator rainCheck()
     {
@@ -48,6 +53,12 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
             if (weatherActive)
             {
                 rainCheckActive = false;
+                if (troubleLevel == 2)
+                {
+                    rainMaxEmission = 1000f;
+                    stormParticle.gameObject.SetActive(true);
+                }
+
                 StartCoroutine(rainlySun());
                 rainParticle.gameObject.SetActive(true);
                 rainEmission.rateOverTime = 0f;
@@ -61,7 +72,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         float cntr = firstLight;
         while (cntr > rainLight)
         {
-            cntr -= 0.05f * Time.deltaTime;
+            cntr -= 0.1f * Time.deltaTime;
             directionLight.GetComponent<Light>().intensity = cntr;
 
 
@@ -118,6 +129,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         }
         rainEmission.rateOverTime = 0;
         rainParticle.gameObject.SetActive(false);
+        stormParticle.gameObject.SetActive(false);
+
 
     }
 }
