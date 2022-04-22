@@ -37,6 +37,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     public void torubleFix()
     {
         troubleLevel--;
+        Debug.Log("trouble level" + troubleLevel);
 
     }
     public void isTrouble()
@@ -103,6 +104,15 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
             yield return new WaitForSeconds(Random.Range(3f, 6f));
         }
         StartCoroutine(rainStop());
+        while (cntr < firstLight)
+        {
+            cntr += 0.1f * Time.deltaTime;
+            directionLight.GetComponent<Light>().intensity = cntr;
+
+
+            yield return null;
+        }
+        directionLight.GetComponent<Light>().intensity = firstLight;
 
     }
     IEnumerator rainStart()
