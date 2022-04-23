@@ -6,11 +6,13 @@ public class ProfessionGate : MonoBehaviour
 {
     public List<SkinnedMeshRenderer> employeeSkinPrefab;
     public int jobId;
+    public Material jobMaterial;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<IDamageble>() != null && other.tag != "Player")
         {
             other.transform.GetChild(1).transform.GetComponent<SkinnedMeshRenderer>().sharedMesh = employeeSkinPrefab[0].sharedMesh;
+            other.transform.GetChild(1).transform.GetComponent<SkinnedMeshRenderer>().material = jobMaterial;
             other.GetComponent<Employee>().jobId = jobId;
             StartCoroutine(throughlyScaling(other.transform));
         }

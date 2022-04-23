@@ -1411,6 +1411,7 @@ MonoBehaviour:
   employeeSkinPrefab:
   - {fileID: 3477187842848970516, guid: 62cd3b5c87dd7a94885cd78137c79692, type: 3}
   jobId: 3
+  jobMaterial: {fileID: 2100000, guid: 65d943d8ba5c52e4298c4623564f5a44, type: 2}
 --- !u!65 &5089330761702800156
 BoxCollider:
   m_ObjectHideFlags: 0

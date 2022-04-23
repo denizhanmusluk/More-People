@@ -104,6 +104,7 @@ public class Build : MonoBehaviour,IBuild
 
                     }
                 }
+                Globals.troubleBuildNo = buildNo - 1;
                 attention.SetActive(true);
                 envirnmonetParticles.SetActive(true);
 
@@ -165,7 +166,7 @@ public class Build : MonoBehaviour,IBuild
             scaleValue4 = Mathf.Abs(Mathf.Cos(counter4));
 
             buildMesh.material.color = new Color(1, 1- scaleValue1, 1- scaleValue1);
-            attention.transform.localScale = Vector3.one + new Vector3(scaleValue2 / 5f, scaleValue2 / 5f, scaleValue2 / 5f);
+            attention.transform.localScale = new Vector3(1, 1.6f, 0.001f) + new Vector3(scaleValue2 / 5f, scaleValue2 / 5f, 0f);
             Text1.color = new Color(scaleValue3, 0, 0);
             hiringImage.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
 
@@ -173,7 +174,7 @@ public class Build : MonoBehaviour,IBuild
             yield return null;
         }
         buildMesh.material.color = new Color(1,1,1);
-        attention.transform.localScale = Vector3.one;
+        attention.transform.localScale = new Vector3(1, 1.6f, 0.001f);
         Text1.color = new Color(0,0,0);
         hiringImage.transform.localScale = Vector3.one;
     }
