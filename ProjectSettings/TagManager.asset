@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BuyArea
+  - money
+  - wall
   layers:
   - Default
   - TransparentFX

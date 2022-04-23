@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     [SerializeField] GameObject playerParents;
     //[SerializeField] public GameObject moneyTarget;
     //[SerializeField] public SoldierCollecting soldierCollect;
-    [SerializeField] public CinemachineVirtualCamera runnerCamera, idleCamera, runnerToIdleCamera;
+    [SerializeField] public CinemachineVirtualCamera runnerCamera, idleCamera, runnerToIdleCamera, idleCamera2;
     public enum States { idle, runner, idleControl , runnerToIdle}
     public States currentBehaviour;
     public int slotNum = 0;
@@ -67,6 +67,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         //runnerCamera.Priority = 0;
         //idleCamera.Priority = 10;
         //runnerToIdleCamera.Priority = 0;
+        idleCamera2.Priority = 0;
         parent = transform.parent.gameObject;
         playerParent = transform.parent.GetComponent<PlayerParent>();
 
@@ -282,18 +283,23 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         //rainParticle.SetActive(true);
     }
 
-    //private void OnTriggerEnter(Collision other)
-    //{
-    //    if (other.transform.tag == "money")
-    //    {
-    //        Debug.Log("money coll");
-    //        //other.gameObject.GetComponent<Player>().MoneyUpdate(30);
-    //        //Score.Instance.scoreUp();
-    //        StartCoroutine(targetMotion(other.gameObject));
-    //        GameObject moneyPrticle = Instantiate(moneyParticlePrefab, other.transform.position, Quaternion.identity);
-    //        other.transform.GetComponent<Collider>().enabled = false;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("change  1");
+
+        if (other.transform.tag == "wall")
+        {
+            idleCamera2.Priority = 20;
+            Debug.Log("change2");
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "wall")
+        {
+            idleCamera2.Priority = 0;
+        }
+    }
 
     //IEnumerator targetMotion(GameObject money)
     //{
