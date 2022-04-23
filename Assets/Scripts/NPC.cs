@@ -168,7 +168,11 @@ public class NPC : MonoBehaviour, ITroubleFix
     IEnumerator troubleFarm()
     {
         int selection = Random.Range(0, pancards.Length);
-        pancard = Instantiate(pancards[selection], pankartPoint.position, pankartPoint.rotation,pankartPoint);
+        int openPancard = Random.Range(0, 3);
+        if (openPancard == 0)
+        {
+            pancard = Instantiate(pancards[selection], pankartPoint.position, pankartPoint.rotation, pankartPoint);
+        }
         anim.SetBool("pancard", true);
 
         float counter = 0f;
@@ -211,12 +215,15 @@ public class NPC : MonoBehaviour, ITroubleFix
     }
     IEnumerator randomDead()
     {
+
         while (true)
         {
             yield return new WaitForSeconds(5f);
             deadSelecting = Random.Range(0, 3);
             if(deadSelecting == 0)
             {
+                TroubleManager.Instance.Remove_TroubleFixObserver(this);
+
                 guilty = Instantiate(guiltyPrefab, transform.position + new Vector3(10, 0, 0), Quaternion.identity, this.transform.parent);
                 guilty.GetComponent<guilty>().destination = transform;
                 //guilty.GetComponent<Animator>().SetBool("walk", true);

@@ -14,6 +14,12 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     [SerializeField] ParticleSystem springParticle;
     ParticleSystem.EmissionModule rainEmission;
     float rainMaxEmission = 300f;
+    float firstFogStart = 43f;
+    float firstFogEnd = 60;
+
+    float lastFogStart = 25f;
+    float lastFogEnd = 50f;
+    Color32 fogFirstColor = new Color32(0, 198, 255, 255);
     void Start()
     {
         rainEmission = rainParticle.emission;
@@ -32,6 +38,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         GameManager.Instance.Remove_FinishObserver(this);
         GameManager.Instance.Remove_RunnerStartObserver(this);
         TroubleManager.Instance.Remove_isTroubleObserver(this);
+        TroubleManager.Instance.Remove_TroubleFixObserver(this);
+
         weatherActive = false;
 
     }
@@ -62,12 +70,15 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
                 }
 
                 StartCoroutine(rainlySun());
+                StartCoroutine(fogDark());
+                StartCoroutine(fogColorDark());
                 rainParticle.gameObject.SetActive(true);
                 rainEmission.rateOverTime = 0f;
             }
             yield return null;
         }
     }
+
     IEnumerator rainlySun()
     {
         yield return new WaitForSeconds(1f);
@@ -100,6 +111,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
                     directionLight.GetComponent<Light>().intensity = rainLight + lightDelta;
                     if(troubleLevel == 0)
                     {
+                        StartCoroutine(fogBright());
+                        StartCoroutine(fogColorBright());
                         break;
                     }
                     yield return null;
@@ -113,6 +126,9 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
                 waitCounter += Time.deltaTime;
                 if (troubleLevel == 0)
                 {
+                    StartCoroutine(fogBright());
+                    StartCoroutine(fogColorBright());
+
                     break;
                 }
                 yield return null;
@@ -155,6 +171,73 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         rainEmission.rateOverTime = 0;
         rainParticle.gameObject.SetActive(false);
         stormParticle.gameObject.SetActive(false);
+
+
+    }
+
+
+
+    IEnumerator fogDark()
+    {
+        float counter = firstFogStart;
+        while (counter > lastFogStart)
+        {
+            counter -= Time.deltaTime;
+            RenderSettings.fogStartDistance = counter;
+            RenderSettings.fogEndDistance = counter + 35;
+
+            yield return null;
+        }
+        RenderSettings.fogStartDistance = lastFogStart;
+        RenderSettings.fogEndDistance = lastFogEnd;
+
+    }
+    IEnumerator fogBright()
+    {
+        float counter = lastFogStart;
+        while (counter < firstFogStart)
+        {
+            counter += Time.deltaTime;
+            RenderSettings.fogStartDistance = counter;
+            RenderSettings.fogEndDistance = counter + 35;
+
+
+            yield return null;
+        }
+        RenderSettings.fogStartDistance = firstFogStart;
+        RenderSettings.fogEndDistance = firstFogEnd;
+
+    }
+    IEnumerator fogColorDark()
+    {
+        byte counter = 198;
+        byte counter2 = 255;
+        while (counter > 62)
+        {
+            counter -= 1;
+            counter2 -= 1;
+
+            RenderSettings.fogColor = new Color32(0, counter, counter2, 255);
+            yield return null;
+        }
+        RenderSettings.fogColor = new Color32(0, 62, 77, 255);
+
+
+    }
+
+    IEnumerator fogColorBright()
+    {
+        byte counter = 62;
+        byte counter2 = 77;
+        while (counter < 198)
+        {
+            counter += 1;
+            counter2 += 1;
+
+            RenderSettings.fogColor = new Color32(0, counter, counter2, 255);
+            yield return null;
+        }
+        RenderSettings.fogColor = new Color32(0, 198, 255, 255);
 
 
     }

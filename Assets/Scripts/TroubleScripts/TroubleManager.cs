@@ -11,6 +11,7 @@ public class TroubleManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("deneme123");
         if(Instance == null)
         {
             Instance = this;
@@ -76,7 +77,7 @@ public class TroubleManager : MonoBehaviour
 
     public void Notify_isTroubleObservers()
     {
-        foreach (IisTrouble observer in troubleFixObservers.ToArray())
+        foreach (IisTrouble observer in isTroubleObservers.ToArray())
         {
             if (isTroubleObservers.Contains(observer))
                 observer.isTrouble();

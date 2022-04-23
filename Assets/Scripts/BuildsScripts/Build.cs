@@ -18,7 +18,7 @@ public class Build : MonoBehaviour,IBuild
     bool colorIndicate = false;
 
     public TextMeshProUGUI Text1;
-    Sequence sequence, sequence2, sequence3, sequence4;
+   //public Sequence sequence, sequence2, sequence3, sequence4;
     [SerializeField] public MeshRenderer buildMesh;
     [SerializeField] public Material firstMaterial;
     [SerializeField] public Material troubleMaterial;
@@ -26,22 +26,16 @@ public class Build : MonoBehaviour,IBuild
     [SerializeField] GameObject envirnmonetParticles;
     [SerializeField] ParticleSystem fireWork;
     public GameObject hiringImage;
+
     private void Start()
     {
         TroubleManager.Instance.Add_TroubleObserver(this);
-
     }
+
     private void Awake()
     {
  
-        sequence = DOTween.Sequence();
-        sequence2 = DOTween.Sequence();
-        sequence3 = DOTween.Sequence();
-        sequence4 = DOTween.Sequence();
-        sequence.Kill();
-        sequence2.Kill();
-        sequence3.Kill();
-        sequence4.Kill();
+
         //hiringImage.SetActive(false);
         attention.SetActive(false);
         envirnmonetParticles.SetActive(false);
@@ -49,6 +43,8 @@ public class Build : MonoBehaviour,IBuild
     }
     public void buildInit(int level)
     {
+
+        //troubleActive = false;
         fireWork.Play();
         thisBuildingLevel = level;
     
@@ -72,56 +68,60 @@ public class Build : MonoBehaviour,IBuild
         //Debug.Log("thisBuildingLevel" + thisBuildingLevel);
         if(Globals.maxBuildLevel - 1 > thisBuildingLevel)
         {
-            colorIndicate = true;
-            troubleActive = true;
-            //trouble this build
-
-            for(int i = 0; i < customerList.Count; i++)
+            if (!troubleActive)
             {
-                Debug.Log("trouble human" + customerList[i].transform.name);
-                //customerList[i].GetComponent<NPC>().currentSelection = NPC.States.trouble;
-                if (buildNo == 1)
-                {
-                    customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troubleHospital;
-                    customerList[i].GetComponent<NPC>()._randomEmoji();
+                colorIndicate = true;
+                troubleActive = true;
+                //trouble this build
 
-                }
-                if (buildNo == 2)
-                {
-                    customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troublePolice;
-                    customerList[i].GetComponent<NPC>()._randomDead();
-                    //if (thisBuildingLevel >= 2)
-                    //{
-                    //    envirnmonetParticles.SetActive(true);
-                    //}
-
-                }
-                if (buildNo == 3)
-                {
-                    customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troubleFarm;
-
-                }
-                if (buildNo == 4)
+                for (int i = 0; i < customerList.Count; i++)
                 {
 
+                    //customerList[i].GetComponent<NPC>().currentSelection = NPC.States.trouble;
+                    if (buildNo == 1)
+                    {
+                        customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troubleHospital;
+                        customerList[i].GetComponent<NPC>()._randomEmoji();
+
+                    }
+                    if (buildNo == 2)
+                    {
+                        customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troublePolice;
+                        customerList[i].GetComponent<NPC>()._randomDead();
+                        //if (thisBuildingLevel >= 2)
+                        //{
+                        //    envirnmonetParticles.SetActive(true);
+                        //}
+
+                    }
+                    if (buildNo == 3)
+                    {
+                        customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troubleFarm;
+
+                    }
+                    if (buildNo == 4)
+                    {
+
+                    }
                 }
+                attention.SetActive(true);
+                envirnmonetParticles.SetActive(true);
+
+                //textColorSet();
+                buildMesh.material = troubleMaterial;
+                //BuildColorSet();
+
+                StartCoroutine(loopColorScaleSet());
+                //TroubleManager.Instance.Remove_TroubleObserver(this);
+                TroubleManager.Instance.Notify_isTroubleObservers();
+                Debug.Log("trouble active" + transform.name);
             }
-            attention.SetActive(true);
-            envirnmonetParticles.SetActive(true);
-
-            textColorSet();
-            buildMesh.material = troubleMaterial;
-            BuildColorSet();
-            //TroubleManager.Instance.Remove_TroubleObserver(this);
-            TroubleManager.Instance.Notify_isTroubleObservers();
-            Debug.Log("trouble active");
         }
         else
         {
-            sequence.Kill();
-            sequence2.Kill();
-            sequence3.Kill();
-            sequence4.Kill();
+
+
+      
             hiringImage.SetActive(false);
 
             if (troubleActive)
@@ -142,6 +142,42 @@ public class Build : MonoBehaviour,IBuild
         //TroubleManager.Instance.Remove_TroubleObserver(this);
 
     }
+    IEnumerator loopColorScaleSet()
+    {
+        hiringImage.SetActive(true);
+        float counter1 = 0f;
+        float counter2 = 0f;
+        float counter3 = 0f;
+        float counter4 = 0f;
+        float scaleValue1 = 0f;
+        float scaleValue2 = 0f;
+        float scaleValue3 = 0f;
+        float scaleValue4 = 0f;
+        while (troubleActive)
+        {
+            counter1 += 5 * Time.deltaTime;
+            counter2 += 5 * Time.deltaTime;
+            counter3 += 5 * Time.deltaTime;
+            counter4 += 5 * Time.deltaTime;
+            scaleValue1 = Mathf.Abs(Mathf.Cos(counter1));
+            scaleValue2 = Mathf.Abs(Mathf.Cos(counter2));
+            scaleValue3 = Mathf.Abs(Mathf.Cos(counter3));
+            scaleValue4 = Mathf.Abs(Mathf.Cos(counter4));
+
+            buildMesh.material.color = new Color(1, 1- scaleValue1, 1- scaleValue1);
+            attention.transform.localScale = Vector3.one + new Vector3(scaleValue2 / 5f, scaleValue2 / 5f, scaleValue2 / 5f);
+            Text1.color = new Color(scaleValue3, 0, 0);
+            hiringImage.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
+
+
+            yield return null;
+        }
+        buildMesh.material.color = new Color(1,1,1);
+        attention.transform.localScale = Vector3.one;
+        Text1.color = new Color(0,0,0);
+        hiringImage.transform.localScale = Vector3.one;
+    }
+    /*
     void BuildColorSet()
     {
 
@@ -190,7 +226,7 @@ public class Build : MonoBehaviour,IBuild
         //Text1.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
         //Text2.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
     }
-
+    */
     IEnumerator buildScaling()
     {
         int buildChildCount = loadedBuild.transform.childCount;
