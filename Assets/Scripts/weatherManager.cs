@@ -5,12 +5,13 @@ using UnityEngine;
 public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFinish
 {
     bool weatherActive = false;
-    int troubleLevel = 0;
+   public int troubleLevel = 0;
     [SerializeField] public GameObject directionLight;
     [SerializeField] float firstLight = 1.1f, rainLight = 0.6f;
     bool rainCheckActive = true;
     [SerializeField] ParticleSystem rainParticle;
     [SerializeField] ParticleSystem stormParticle;
+    [SerializeField] ParticleSystem springParticle;
     ParticleSystem.EmissionModule rainEmission;
     float rainMaxEmission = 300f;
     void Start()
@@ -31,14 +32,14 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         GameManager.Instance.Remove_FinishObserver(this);
         GameManager.Instance.Remove_RunnerStartObserver(this);
         TroubleManager.Instance.Remove_isTroubleObserver(this);
-
         weatherActive = false;
+
     }
     public void torubleFix()
     {
         troubleLevel--;
         Debug.Log("trouble level" + troubleLevel);
-
+        springParticle.Play();
     }
     public void isTrouble()
     {
@@ -69,11 +70,11 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     }
     IEnumerator rainlySun()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         float cntr = firstLight;
         while (cntr > rainLight)
         {
-            cntr -= 0.1f * Time.deltaTime;
+            cntr -= 0.2f * Time.deltaTime;
             directionLight.GetComponent<Light>().intensity = cntr;
 
 
@@ -97,16 +98,30 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
                     lightDelta = 1-Mathf.Abs(Mathf.Cos(counter));
                     //lightDelta *= firstLight - rainLight;
                     directionLight.GetComponent<Light>().intensity = rainLight + lightDelta;
+                    if(troubleLevel == 0)
+                    {
+                        break;
+                    }
                     yield return null;
                 }
                 yield return new WaitForSeconds(Random.Range(0.3f, 0.6f));
             }
-            yield return new WaitForSeconds(Random.Range(3f, 6f));
+            float waitCounter = 0f;
+            float waitTime = Random.Range(3f, 6f);
+            while (waitTime > waitCounter)
+            {
+                waitCounter += Time.deltaTime;
+                if (troubleLevel == 0)
+                {
+                    break;
+                }
+                yield return null;
+            }
         }
         StartCoroutine(rainStop());
         while (cntr < firstLight)
         {
-            cntr += 0.1f * Time.deltaTime;
+            cntr += Time.deltaTime;
             directionLight.GetComponent<Light>().intensity = cntr;
 
 
@@ -132,7 +147,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         float counter = rainMaxEmission;
         while (counter > 0)
         {
-            counter -= 1500 * Time.deltaTime;
+            counter -= 300 * Time.deltaTime;
             rainEmission.rateOverTime = counter;
 
             yield return null;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, ITroubleFix
 {
     public NavMeshAgent agent;
     [SerializeField] public Transform destination;
@@ -20,6 +20,8 @@ public class NPC : MonoBehaviour
     [SerializeField] GameObject guiltyPrefab;
     GameObject guilty;
     bool trigger = false;
+
+    GameObject pancard;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,7 +29,7 @@ public class NPC : MonoBehaviour
         anim.SetBool("walk", true);
         agent.SetDestination(destination.position);
         //currentSelection = States.moveTarget;
-
+        TroubleManager.Instance.Add_TroubleFixObserver(this);
     }
     void Update()
     {
@@ -55,6 +57,7 @@ public class NPC : MonoBehaviour
                 break;
             case States.troubleUniversity:
                 {
+                    troubleMoveUniversity();
                 }
                 break;
             case States.dead:
@@ -92,13 +95,23 @@ public class NPC : MonoBehaviour
     }
     public void troubleMoveHospital()
     {
-   
-        if (Vector3.Distance(transform.position, destination.position) < 1 || trigger)
+        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
         {
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
             agent.SetDestination(transform.position);
             currentSelection = States.stopMove;
+            GetComponent<CapsuleCollider>().radius *= 2;
+
+        }
+
+        if (Vector3.Distance(transform.position, destination.position) < 1)
+        {
+            anim.SetBool("walk", false);
+            destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
+            agent.SetDestination(transform.position);
+            currentSelection = States.stopMove;
+            GetComponent<CapsuleCollider>().radius *= 2;
 
         }
         else
@@ -123,14 +136,26 @@ public class NPC : MonoBehaviour
     }
     public void troubleMoveFarm()
     {
-   
-        if (Vector3.Distance(transform.position, destination.position) < 5 || trigger)
+        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
         {
             currentSelection = States.stopMove;
             StartCoroutine(troubleFarm());
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
             agent.SetDestination(transform.position);
+            GetComponent<CapsuleCollider>().radius *= 2;
+
+        }
+
+
+        if (Vector3.Distance(transform.position, destination.position) < 5)
+        {
+            currentSelection = States.stopMove;
+            StartCoroutine(troubleFarm());
+            anim.SetBool("walk", false);
+            destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
+            agent.SetDestination(transform.position);
+            GetComponent<CapsuleCollider>().radius *= 2;
 
         }
         else
@@ -143,7 +168,7 @@ public class NPC : MonoBehaviour
     IEnumerator troubleFarm()
     {
         int selection = Random.Range(0, pancards.Length);
-        GameObject pancard = Instantiate(pancards[selection], pankartPoint.position, pankartPoint.rotation,pankartPoint);
+        pancard = Instantiate(pancards[selection], pankartPoint.position, pankartPoint.rotation,pankartPoint);
         anim.SetBool("pancard", true);
 
         float counter = 0f;
@@ -156,15 +181,27 @@ public class NPC : MonoBehaviour
     }
     public void troubleMoveUniversity()
     {
-        agent.SetDestination(destination.position);
-
-        if (Vector3.Distance(transform.position, destination.position) < 1)
+        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
         {
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
+            agent.SetDestination(transform.position);
+            currentSelection = States.stopMove;
+            GetComponent<CapsuleCollider>().radius *= 2;
+
+        }
+
+        if (Vector3.Distance(transform.position, destination.position) < 1 )
+        {
+            anim.SetBool("walk", false);
+            destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
+            agent.SetDestination(transform.position);
+            currentSelection = States.stopMove;
+            GetComponent<CapsuleCollider>().radius *= 2;
         }
         else
         {
+            agent.SetDestination(destination.position);
             anim.SetBool("walk", true);
         }
     }
@@ -247,6 +284,15 @@ public class NPC : MonoBehaviour
         {
             trigger = true;
             Debug.Log("trigger");
+        }
+    }
+    public void torubleFix()
+    {
+        TroubleManager.Instance.Remove_TroubleFixObserver(this);
+        currentSelection = States.moveTarget;
+        if(pancard != null)
+        {
+            Destroy(pancard);
         }
     }
 }

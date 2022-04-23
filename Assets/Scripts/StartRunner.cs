@@ -15,13 +15,14 @@ public class StartRunner : MonoBehaviour
             StartCoroutine(moving(other.gameObject));
             other.GetComponent<PlayerControl>().idleControlActive = false;
             other.GetComponent<PlayerControl>().playerParent.direction.seqKill();
+            other.GetComponent<PlayerControl>().weather.troubleLevel = 0;
+
         }
     }
     IEnumerator moving(GameObject player)
     {
-
         float counter = 0;
-        while (Mathf.Abs(player.transform.parent.transform.position.x) > 0 || Mathf.Abs(player.transform.localPosition.x) > 0)
+        while (Mathf.Abs(player.transform.parent.transform.position.x) > 0 || Mathf.Abs(player.transform.localPosition.x) > 0 || counter < 2f)
         {
             counter += Time.deltaTime;
             player.transform.parent.transform.Translate(player.transform.parent.transform.forward * Time.deltaTime * player.GetComponent<PlayerControl>().acceleration);

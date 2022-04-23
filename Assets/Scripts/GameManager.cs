@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     [SerializeField] GameObject failPanel;
     [SerializeField] GameObject successPanel;
     [SerializeField] GameObject restartButton;
-    [SerializeField] GameObject ProgressBar;
+    //[SerializeField] GameObject ProgressBar;
     [SerializeField] Image moneyPanel;
     [SerializeField] GameObject buildPanel;
     public TextMeshProUGUI moneyLabel;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
 
 
     [SerializeField] public TextMeshProUGUI doctorText, policeText, farmerText, teacheText;
+    [SerializeField] public GameObject hiringDoctor, hiringPolice, hiringFarmer, hiringTeacher;
 
 
     void Awake()
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         {
             StartCoroutine(startDelay());
 
-            ProgressBar.SetActive(true);
+            //ProgressBar.SetActive(true);
             StartCoroutine(scaleBagels());
 
 

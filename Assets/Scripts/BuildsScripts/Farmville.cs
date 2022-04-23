@@ -17,6 +17,8 @@ public class Farmville : MonoBehaviour, IEmployeeDropping
     {
 
         build.Text1 = FindObjectOfType<GameManager>().farmerText.transform.parent.GetChild(0).GetComponent<TextMeshProUGUI>();
+        build.hiringImage = FindObjectOfType<GameManager>().farmerText.transform.parent.GetChild(2).gameObject;
+
         //build.Text2 = FindObjectOfType<GameManager>().farmerText.transform.parent.GetChild(1).GetComponent<TextMeshProUGUI>();
         build.buildNo = jobId;
 

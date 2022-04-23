@@ -18,11 +18,14 @@ public class Build : MonoBehaviour,IBuild
     bool colorIndicate = false;
 
     public TextMeshProUGUI Text1;
-    Sequence sequence, sequence2, sequence3;
+    Sequence sequence, sequence2, sequence3, sequence4;
     [SerializeField] public MeshRenderer buildMesh;
     [SerializeField] public Material firstMaterial;
     [SerializeField] public Material troubleMaterial;
-
+    [SerializeField] GameObject attention;
+    [SerializeField] GameObject envirnmonetParticles;
+    [SerializeField] ParticleSystem fireWork;
+    public GameObject hiringImage;
     private void Start()
     {
         TroubleManager.Instance.Add_TroubleObserver(this);
@@ -34,12 +37,19 @@ public class Build : MonoBehaviour,IBuild
         sequence = DOTween.Sequence();
         sequence2 = DOTween.Sequence();
         sequence3 = DOTween.Sequence();
+        sequence4 = DOTween.Sequence();
         sequence.Kill();
         sequence2.Kill();
         sequence3.Kill();
+        sequence4.Kill();
+        //hiringImage.SetActive(false);
+        attention.SetActive(false);
+        envirnmonetParticles.SetActive(false);
+
     }
     public void buildInit(int level)
     {
+        fireWork.Play();
         thisBuildingLevel = level;
     
 
@@ -65,7 +75,7 @@ public class Build : MonoBehaviour,IBuild
             colorIndicate = true;
             troubleActive = true;
             //trouble this build
-            Debug.Log("trouble " + transform.name);
+
             for(int i = 0; i < customerList.Count; i++)
             {
                 Debug.Log("trouble human" + customerList[i].transform.name);
@@ -80,6 +90,11 @@ public class Build : MonoBehaviour,IBuild
                 {
                     customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troublePolice;
                     customerList[i].GetComponent<NPC>()._randomDead();
+                    //if (thisBuildingLevel >= 2)
+                    //{
+                    //    envirnmonetParticles.SetActive(true);
+                    //}
+
                 }
                 if (buildNo == 3)
                 {
@@ -91,10 +106,13 @@ public class Build : MonoBehaviour,IBuild
 
                 }
             }
+            attention.SetActive(true);
+            envirnmonetParticles.SetActive(true);
+
             textColorSet();
             buildMesh.material = troubleMaterial;
             BuildColorSet();
-            TroubleManager.Instance.Remove_TroubleObserver(this);
+            //TroubleManager.Instance.Remove_TroubleObserver(this);
             TroubleManager.Instance.Notify_isTroubleObservers();
             Debug.Log("trouble active");
         }
@@ -103,10 +121,18 @@ public class Build : MonoBehaviour,IBuild
             sequence.Kill();
             sequence2.Kill();
             sequence3.Kill();
+            sequence4.Kill();
+            hiringImage.SetActive(false);
+
             if (troubleActive)
             {
                 troubleActive = false;
                 TroubleManager.Instance.Notify_GameTroubleFixObservers();
+                Debug.Log("sorun cozuldu");
+                attention.SetActive(false);
+                envirnmonetParticles.SetActive(false);
+
+                //envirnmonetParticles.SetActive(false);
 
                 // trouble fixed
             }
@@ -128,7 +154,11 @@ public class Build : MonoBehaviour,IBuild
 
 
 
+        sequence2.Append(attention.transform.DOScale(Vector3.one * 1.1f, 0.3f).SetLoops(-1, LoopType.Yoyo));
 
+        sequence2.AppendInterval(0f);
+        sequence2.SetLoops(1, LoopType.Yoyo);
+        sequence2.SetRelative(true);
         //Text1.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
         //Text2.DOColor(Color.red, 1).SetLoops(-1, LoopType.Yoyo);
     }
@@ -142,6 +172,14 @@ public class Build : MonoBehaviour,IBuild
         sequence.AppendInterval(0f);
         sequence.SetLoops(1, LoopType.Yoyo);
         sequence.SetRelative(true);
+
+        hiringImage.SetActive(true);
+
+        sequence4.Append(hiringImage.transform.DOScale(Vector3.one * 1.1f, 0.3f).SetLoops(-1, LoopType.Yoyo));
+
+        sequence4.AppendInterval(0f);
+        sequence4.SetLoops(1, LoopType.Yoyo);
+        sequence4.SetRelative(true);
 
         //sequence2.AppendInterval(0f);
         //sequence2.SetLoops(1, LoopType.Yoyo);

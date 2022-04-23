@@ -48,6 +48,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
     [SerializeField] public GameObject moneyTarget;
     //[SerializeField] GameObject rainParticle;
+    public weatherManager weather;
     private void Awake()
     {
         currentBehaviour = States.idle;
