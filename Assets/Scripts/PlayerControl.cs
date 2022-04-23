@@ -92,16 +92,18 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
         currentBehaviour = States.runner;
         anim.SetBool("walk" ,true);
-        runnerCamera.Priority = 0;
-        idleCamera.Priority = 0;
-        runnerToIdleCamera.Priority = 10;
+   
         StartCoroutine(startDelay());
     }
     IEnumerator startDelay()
     {
         Debug.Log("start game1");
         anim.SetTrigger("flip");
+        yield return new WaitForSeconds(0.5f);
 
+        runnerCamera.Priority = 0;
+        idleCamera.Priority = 0;
+        runnerToIdleCamera.Priority = 10;
         yield return new WaitForSeconds(1f);
         runnerCamera.Priority = 10;
         idleCamera.Priority = 0;
@@ -110,7 +112,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
         Lawyer.SetActive(false);
         Hand.SetActive(true);
-        Debug.Log("start game2");
+        yield return new WaitForSeconds(1f);
         runnerControlActive = true;
     }
     void forward()
@@ -146,6 +148,8 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
                 break;
             case States.runner:
                 {
+                    transform.parent.transform.Translate(transform.parent.transform.forward * Time.deltaTime * acceleration);
+
                     if (runnerControlActive)
                     {
                         runnerControl();
@@ -207,7 +211,6 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         Xmove = Controlsensivity * dX / (Time.deltaTime * 25);
         Move(Xmove, Steer, acceleration);
 
-        transform.parent.transform.Translate(transform.parent.transform.forward * Time.deltaTime * acceleration);
 
     }
     public void Move(float _swipe, float _steering, float _speed)

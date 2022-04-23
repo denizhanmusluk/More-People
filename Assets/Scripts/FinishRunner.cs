@@ -44,7 +44,7 @@ public class FinishRunner : MonoBehaviour
         playerControl.Hand.SetActive(false);
         playerControl.anim.SetBool("walk", true);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
 
         playerControl.anim.SetTrigger("flip");
 
