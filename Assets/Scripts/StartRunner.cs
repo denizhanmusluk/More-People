@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class StartRunner : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class StartRunner : MonoBehaviour
             other.GetComponent<PlayerControl>().idleControlActive = false;
             other.GetComponent<PlayerControl>().playerParent.direction.seqKill();
             other.GetComponent<PlayerControl>().weather.troubleLevel = 0;
+            other.transform.parent.GetComponent<PlayerParent>().direction.GetComponent<Image>().enabled = false;
 
         }
     }
