@@ -18,4 +18,5 @@ public static class Globals
     public static int currentTeacherCount = 0, universityLevel = 0;
 
     public static int troubleBuildNo;
+    public static int population = 0;
 }

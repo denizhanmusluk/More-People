@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     //[SerializeField] GameObject ProgressBar;
     [SerializeField] Image moneyPanel;
     [SerializeField] GameObject buildPanel;
+    [SerializeField] GameObject populationPanel;
     public TextMeshProUGUI moneyLabel;
     
 
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
 
     [SerializeField] public TextMeshProUGUI doctorText, policeText, farmerText, teacheText;
     [SerializeField] public GameObject hiringDoctor, hiringPolice, hiringFarmer, hiringTeacher;
+    [SerializeField] TextMeshProUGUI population;
+    [SerializeField] public Image downArrow;
 
 
     void Awake()
@@ -56,8 +59,13 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         PlayerPrefs.SetInt("money", Globals.moneyAmount);
 
     }
+    public void populationUpdate()
+    {
+        population.text = Globals.population.ToString();
+    }
     void Start()
     {
+        downArrow.gameObject.SetActive(false);
         Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
@@ -69,6 +77,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         successPanel.SetActive(false);
         failPanel.SetActive(false);
         buildPanel.SetActive(true);
+        populationPanel.SetActive(false);
         Add_WinObserver(this);
         Add_LoseObserver(this);
         Add_FinishObserver(this);
@@ -181,6 +190,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     {
         moneyPanel.enabled = true;
             buildPanel.SetActive(false);
+        populationPanel.SetActive(true);
 
     }
     public void runnerStar()
@@ -206,6 +216,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         startButton.SetActive(false);
         StartCoroutine(levelLoad());
         buildPanel.SetActive(true);
+        populationPanel.SetActive(false);
         moneyPanel.enabled = false;
         StartCoroutine(scaleBagels());
 

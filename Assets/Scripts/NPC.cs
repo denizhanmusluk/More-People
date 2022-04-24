@@ -269,6 +269,11 @@ public class NPC : MonoBehaviour, ITroubleFix
         currentSelection = States.dead;
         int selecting = Random.Range(0, deadSprite.Length);
         Instantiate(deadSprite[selecting], transform.position, Quaternion.Euler(90, 0, 0), this.transform);
+        if (Globals.population > 0)
+        {
+            Globals.population -= 1;
+            GameManager.Instance.populationUpdate();
+        }
         yield return new WaitForSeconds(10f);
         Destroy(guilty);
     }

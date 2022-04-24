@@ -45,6 +45,32 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
         buildCams[Globals.troubleBuildNo].Priority = 30;
         yield return new WaitForSeconds(2f);
         buildCams[Globals.troubleBuildNo].Priority = 0;
-
+        coroutineActive = true;
+        troubleActive = true;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            StartCoroutine(troubledBuildReview());
+        }
+    }
+    IEnumerator troubledBuildReview()
+    {
+        while (coroutineActive)
+        {
+            if (troubleActive)
+            {
+                coroutineActive = false;
+                troubleActive = false;
+            }
+            yield return null;
+        }
+        buildCams[Globals.troubleBuildNo].Priority = 30;
+        yield return new WaitForSeconds(1.5f);
+        buildCams[Globals.troubleBuildNo].Priority = 0;
+        coroutineActive = true;
+        troubleActive = true;
+    }
+
 }

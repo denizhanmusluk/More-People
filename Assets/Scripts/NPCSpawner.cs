@@ -45,7 +45,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
                 StartCoroutine(playerDistanceCheck());
                 break;
             }
-            yield return new WaitForSeconds(20 * spawnTime / (2 + Globals.universityLevel + Globals.farmvilleLevel + Globals.policeStationLevel + Globals.hospitalLevel));
+            yield return new WaitForSeconds(10 * spawnTime / (2 + Globals.universityLevel + Globals.farmvilleLevel + Globals.policeStationLevel + Globals.hospitalLevel));
 
             if (Vector3.Distance(player.transform.position, transform.position) < 15f)
             {
@@ -80,13 +80,17 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
                 {
 
                 }
-
+                if (Globals.population > 1)
+                {
+                    Globals.population -= 2;
+                }
             }
             else
             {
                 _npc.GetComponent<NPC>().currentSelection = NPC.States.moveTarget;
             }
-
+            Globals.population++;
+            GameManager.Instance.populationUpdate();
         }
     }
     IEnumerator playerDistanceCheck()

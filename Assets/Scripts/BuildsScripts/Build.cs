@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -26,10 +27,11 @@ public class Build : MonoBehaviour,IBuild
     [SerializeField] GameObject envirnmonetParticles;
     [SerializeField] ParticleSystem fireWork;
     public GameObject hiringImage;
-
+    public GameObject downArrow;
     private void Start()
     {
         TroubleManager.Instance.Add_TroubleObserver(this);
+        downArrow = GameManager.Instance.downArrow.gameObject;
     }
 
     private void Awake()
@@ -146,6 +148,7 @@ public class Build : MonoBehaviour,IBuild
     IEnumerator loopColorScaleSet()
     {
         hiringImage.SetActive(true);
+        downArrow.SetActive(true);
         float counter1 = 0f;
         float counter2 = 0f;
         float counter3 = 0f;
@@ -169,6 +172,10 @@ public class Build : MonoBehaviour,IBuild
             attention.transform.localScale = new Vector3(1, 1.6f, 0.001f) + new Vector3(scaleValue2 / 5f, scaleValue2 / 5f, 0f);
             Text1.color = new Color(scaleValue3, 0, 0);
             hiringImage.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
+            downArrow.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
+            downArrow.GetComponent<Image>().color = new Color(scaleValue3, 0, 0);
+
+
 
 
             yield return null;
@@ -177,6 +184,10 @@ public class Build : MonoBehaviour,IBuild
         attention.transform.localScale = new Vector3(1, 1.6f, 0.001f);
         Text1.color = new Color(0,0,0);
         hiringImage.transform.localScale = Vector3.one;
+        downArrow.transform.localScale = Vector3.one;
+        downArrow.GetComponent<Image>().color = new Color(1,1,1);
+        downArrow.SetActive(false);
+
     }
     /*
     void BuildColorSet()

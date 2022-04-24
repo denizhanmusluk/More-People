@@ -182,7 +182,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         float counter = firstFogStart;
         while (counter > lastFogStart)
         {
-            counter -= Time.deltaTime;
+            counter -= 3 * Time.deltaTime;
             RenderSettings.fogStartDistance = counter;
             RenderSettings.fogEndDistance = counter + 35;
 
@@ -197,7 +197,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         float counter = lastFogStart;
         while (counter < firstFogStart)
         {
-            counter += Time.deltaTime;
+            counter += 3 * Time.deltaTime;
             RenderSettings.fogStartDistance = counter;
             RenderSettings.fogEndDistance = counter + 35;
 
@@ -214,8 +214,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         byte counter2 = 255;
         while (counter > 62)
         {
-            counter -= 1;
-            counter2 -= 1;
+            counter -= 3;
+            counter2 -= 3;
 
             RenderSettings.fogColor = new Color32(0, counter, counter2, 255);
             yield return null;
@@ -231,8 +231,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         byte counter2 = 77;
         while (counter < 198)
         {
-            counter += 1;
-            counter2 += 1;
+            counter += 3;
+            counter2 += 3;
 
             RenderSettings.fogColor = new Color32(0, counter, counter2, 255);
             yield return null;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallObstacle : MonoBehaviour
 {
-    public enum States { X, Y, Z }
+    public enum States { X, Zreverse, Z }
     public States RotateAxis;
     Vector3 axis;
     void Start()
@@ -16,9 +16,9 @@ public class BallObstacle : MonoBehaviour
                     axis = new Vector3(1, 0, 0);
                 }
                 break;
-            case States.Y:
+            case States.Zreverse:
                 {
-                    axis = new Vector3(0, 1, 0);
+                    axis = new Vector3(0, 0, -1);
                 }
                 break;
             case States.Z:
@@ -33,7 +33,7 @@ public class BallObstacle : MonoBehaviour
  IEnumerator rotBal(Vector3 vect)
     {
         float seconds;
-        seconds = Random.Range(0f, 2f);
+        seconds = Random.Range(0f, 0.8f);
         yield return new WaitForSeconds(seconds);
         while (true)
         {
@@ -45,7 +45,7 @@ public class BallObstacle : MonoBehaviour
                 angle = Mathf.Cos(counter);
                 angle *= 70;
 
-                transform.rotation = Quaternion.Euler(angle * vect.x, angle * vect.y, angle * vect.z);
+                transform.localRotation = Quaternion.Euler(angle * vect.x, angle * vect.y, angle * vect.z);
 
                 yield return null;
             }
@@ -56,7 +56,7 @@ public class BallObstacle : MonoBehaviour
                 angle = Mathf.Cos(counter);
                 angle *= 70;
 
-                transform.rotation = Quaternion.Euler(angle * vect.x, angle * vect.y, angle * vect.z);
+                transform.localRotation = Quaternion.Euler(angle * vect.x, angle * vect.y, angle * vect.z);
                 yield return null;
             }
         }

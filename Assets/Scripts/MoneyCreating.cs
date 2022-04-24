@@ -15,7 +15,6 @@ public class MoneyCreating : MonoBehaviour
     //[SerializeField] Transform firstInstPoint, firstInstPoint2;
     [SerializeField] MoneyCollect moneyCollecting;
     [SerializeField] public MeshRenderer buildMesh;
-
     void Start()
     {
         StartCoroutine(SpawnMoney());
@@ -23,7 +22,7 @@ public class MoneyCreating : MonoBehaviour
 
     IEnumerator SpawnMoney()
     {
-        while (true)
+        while (transform.parent.GetComponent<Build>().troubleActive)
         {
             yield return new WaitForSeconds(spawnTime);
             if (moneyCollecting.moneyNum < maxLimit)
