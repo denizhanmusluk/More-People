@@ -22,7 +22,7 @@ public class MoneyCreating : MonoBehaviour
 
     IEnumerator SpawnMoney()
     {
-        while (transform.parent.GetComponent<Build>().troubleActive)
+        while (!transform.parent.GetComponent<Build>().troubleActive)
         {
             yield return new WaitForSeconds(spawnTime);
             if (moneyCollecting.moneyNum < maxLimit)
@@ -53,6 +53,9 @@ public class MoneyCreating : MonoBehaviour
 
             }
         }
+        yield return null;
+        StartCoroutine(SpawnMoney());
+
     }
 
     //private void OnTriggerStay(Collider other)
