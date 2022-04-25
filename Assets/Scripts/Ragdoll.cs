@@ -62,7 +62,7 @@ public class Ragdoll : MonoBehaviour
         {
             rigidb.detectCollisions = active;
             rigidb.isKinematic = !active;
-            rigidb.AddForce(new Vector3(2 * xDir, 1, 2) * 1000);
+            rigidb.AddForce(new Vector3(2 * xDir, 0.4f, 1) * 2500);
             //rigidb.drag = 10;
         }
 

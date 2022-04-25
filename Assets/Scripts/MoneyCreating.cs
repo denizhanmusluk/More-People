@@ -15,8 +15,12 @@ public class MoneyCreating : MonoBehaviour
     //[SerializeField] Transform firstInstPoint, firstInstPoint2;
     [SerializeField] MoneyCollect moneyCollecting;
     [SerializeField] public MeshRenderer buildMesh;
+    public float spawnTurboTime = 0.1f;
+    public float firstSpawnTime;
     void Start()
     {
+        Debug.Log("firstSpawnTime " + firstSpawnTime);
+
         StartCoroutine(SpawnMoney());
     }
 
@@ -25,6 +29,8 @@ public class MoneyCreating : MonoBehaviour
         while (!transform.parent.GetComponent<Build>().troubleActive)
         {
             yield return new WaitForSeconds(spawnTime);
+            firstSpawnTime = spawnTime;
+
             if (moneyCollecting.moneyNum < maxLimit)
             {
                 GameObject material = Instantiate(moneyPrefab, transform.position, Quaternion.Euler(-90,90,0), this.transform);
@@ -39,7 +45,7 @@ public class MoneyCreating : MonoBehaviour
                    //    material.transform.rotation = Quaternion.RotateTowards(material.transform.rotation, firstInstPoint2.rotation, 75 * Time.deltaTime);
                    //    yield return null;
                    //}
-                   Vector3 targetPos = moneyInstantiatePoint[moneyCollecting.moneyNum % moneyInstantiatePoint.Length].position + new Vector3(0, (clothRow / 4), 0);
+                   Vector3 targetPos = moneyInstantiatePoint[moneyCollecting.moneyNum % moneyInstantiatePoint.Length].position + new Vector3(0, (clothRow / 3), 0);
                 //while (Vector3.Distance(material.transform.position, targetPos) > 0.1f)
                 //{
                 //    material.transform.position = Vector3.MoveTowards(material.transform.position, targetPos, 15 * Time.deltaTime);
@@ -57,7 +63,20 @@ public class MoneyCreating : MonoBehaviour
         StartCoroutine(SpawnMoney());
 
     }
+    public void spawnSpeed()
+    {
+        StartCoroutine(spawnSpeedSet());
+    }
+    IEnumerator spawnSpeedSet()
+    {
+        Debug.Log("spawnTurboTime " + spawnTurboTime);
+        Debug.Log("firstSpawnTime " + firstSpawnTime);
+        spawnTime = spawnTurboTime;
+        yield return new WaitForSeconds(2f);
+        spawnTime = firstSpawnTime;
+        Debug.Log("spawn active 2");
 
+    }
     //private void OnTriggerStay(Collider other)
     //{
     //    if (other.GetComponent<IStack>() != null)

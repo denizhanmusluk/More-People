@@ -44,7 +44,10 @@ public class hospital : MonoBehaviour,IEmployeeDropping
         yield return new WaitForSeconds(0.5f);
         foreach (var img in GetComponentsInChildren<Image>())
         {
-            outline = img;
+            if (img.transform.name == "OutLine")
+            {
+                outline = img;
+            }
         }
         foreach (var txt in GetComponentsInChildren<TextMeshProUGUI>())
         {

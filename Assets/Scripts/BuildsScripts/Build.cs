@@ -62,6 +62,7 @@ public class Build : MonoBehaviour,IBuild
         //SpawnManager.Instance.target.Add(transform.GetChild(0).transform);
         buildMesh= loadedBuild.GetComponent<MoneyCreating>().buildMesh;
         firstMaterial = buildMesh.material;
+        loadedBuild.GetComponent<MoneyCreating>().spawnSpeed();
         StartCoroutine(buildScaling());
     }
     public void troubleCheck()
