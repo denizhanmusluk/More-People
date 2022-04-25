@@ -70,7 +70,7 @@ public class Build : MonoBehaviour,IBuild
     {
         //Debug.Log("Globals.maxBuildLevel" + Globals.maxBuildLevel);
         //Debug.Log("thisBuildingLevel" + thisBuildingLevel);
-        if(Globals.maxBuildLevel - 1 > thisBuildingLevel)
+        if(Globals.maxBuildLevel - 1 > thisBuildingLevel || (buildNo == 1 && thisBuildingLevel == 0) || (buildNo == 2 && thisBuildingLevel == 0))
         {
             if (!troubleActive)
             {

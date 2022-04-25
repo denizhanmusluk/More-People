@@ -63,8 +63,8 @@ public class UIdirection : MonoBehaviour, IisTrouble, ITroubleFix, IRunner
         distance = targetList[selectionTarget].transform.position - player.transform.position;
         float distZ = Mathf.Clamp(distance.z, -20, 20);
         float distX = Mathf.Clamp(distance.x, -2, 2);
-        distX = Mathf.Abs(distX);
-        distZ = Mathf.Abs(distZ);
+        //distX = Mathf.Abs(distX);
+        //distZ = Mathf.Abs(distZ);
         int magnX;
         int magnZ;
         if (distX > 0)
@@ -84,7 +84,7 @@ public class UIdirection : MonoBehaviour, IisTrouble, ITroubleFix, IRunner
         {
             magnZ = -100;
         }
-        GetComponent<RectTransform>().anchoredPosition = new Vector3(direction.x  * distX * Screen.width / 5 + magnX, direction.z* distZ * Screen.height / 48 + magnZ , 0);
+        GetComponent<RectTransform>().anchoredPosition = new Vector3(direction.x  * Mathf.Abs(distX) * Screen.width / 15 + magnX, direction.z* Mathf.Abs(distZ) * Screen.height / 240 + magnZ , 0);
 
 
         float angle;

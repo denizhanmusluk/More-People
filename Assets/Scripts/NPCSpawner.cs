@@ -80,7 +80,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
                 {
                     _npc.GetComponent<NPC>().currentSelection = NPC.States.troubleUniversity;
                 }
-                int i = 5;
+                int i = 10;
                 while (i > 1)
                 {
                     i--;

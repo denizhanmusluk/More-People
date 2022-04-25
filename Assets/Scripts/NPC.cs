@@ -95,7 +95,7 @@ public class NPC : MonoBehaviour, ITroubleFix
     }
     public void troubleMoveHospital()
     {
-        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
+        if (Vector3.Distance(transform.position, destination.position) < 7 && trigger)
         {
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -136,7 +136,7 @@ public class NPC : MonoBehaviour, ITroubleFix
     }
     public void troubleMoveFarm()
     {
-        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
+        if (Vector3.Distance(transform.position, destination.position) < 8 && trigger)
         {
             currentSelection = States.stopMove;
             StartCoroutine(troubleFarm());
@@ -185,7 +185,7 @@ public class NPC : MonoBehaviour, ITroubleFix
     }
     public void troubleMoveUniversity()
     {
-        if (Vector3.Distance(transform.position, destination.position) < 15 && trigger)
+        if (Vector3.Distance(transform.position, destination.position) < 7 && trigger)
         {
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -268,7 +268,7 @@ public class NPC : MonoBehaviour, ITroubleFix
         currentSelection = States.dead;
         int selecting = Random.Range(0, deadSprite.Length);
         Instantiate(deadSprite[selecting], transform.position, Quaternion.Euler(90, 0, 0), this.transform);
-        int i = 3;
+        int i = 5;
         while (i > 1)
         {
             i--;
