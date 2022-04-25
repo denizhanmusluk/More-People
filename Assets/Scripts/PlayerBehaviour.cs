@@ -85,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     }
    public void hitObstacle(GameObject obs)
     {
-        runnerActive = false;
+        this.runnerActive = false;
         humanBack.GetComponent<PlayerBehaviour>().runnerActive = false;
         //humanBack.GetComponent<PlayerBehaviour>().runnerActive = true;
         transform.parent = playerParent.transform.parent;
@@ -103,9 +103,9 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     }
     IEnumerator reMoveToFollowPoint(GameObject human,Transform followPoint)
     {
-        while (Vector3.Distance(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z)) > 0.1f)
+        while (Vector3.Distance(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z)) > 0.3f)
         {
-            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z), 10 * Time.deltaTime);
+            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z), 15 * Time.deltaTime);
             yield return null;
 
         }
