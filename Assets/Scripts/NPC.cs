@@ -194,8 +194,7 @@ public class NPC : MonoBehaviour, ITroubleFix
             GetComponent<CapsuleCollider>().radius *= 2;
 
         }
-
-        if (Vector3.Distance(transform.position, destination.position) < 1 )
+        else if (Vector3.Distance(transform.position, destination.position) < 5)
         {
             anim.SetBool("walk", false);
             destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -269,10 +268,16 @@ public class NPC : MonoBehaviour, ITroubleFix
         currentSelection = States.dead;
         int selecting = Random.Range(0, deadSprite.Length);
         Instantiate(deadSprite[selecting], transform.position, Quaternion.Euler(90, 0, 0), this.transform);
-        if (Globals.population > 0)
+        int i = 3;
+        while (i > 1)
         {
-            Globals.population -= 1;
-            GameManager.Instance.populationUpdate();
+            i--;
+            if (Globals.population > 20)
+            {
+                Globals.population -= 1;
+                GameManager.Instance.populationUpdate();
+            }
+            yield return new WaitForSeconds(0.2f);
         }
         yield return new WaitForSeconds(10f);
         Destroy(guilty);

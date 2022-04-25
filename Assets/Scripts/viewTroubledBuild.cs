@@ -19,6 +19,7 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
     }
     public void runnerStar()
     {
+        Globals.troubleBuildNo = 0;
         GameManager.Instance.Remove_FinishObserver(this);
         GameManager.Instance.Remove_RunnerStartObserver(this);
         TroubleManager.Instance.Remove_isTroubleObserver(this);
@@ -28,7 +29,10 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
     }
     public void isTrouble()
     {
-        StartCoroutine(troubledBuildCheck());
+        if (Globals.troubleBuildNo > 0)
+        {
+            StartCoroutine(troubledBuildCheck());
+        }
     }
     IEnumerator troubledBuildCheck()
     {
@@ -42,9 +46,9 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
             yield return null;
         }
         yield return new WaitForSeconds(1f);
-        buildCams[Globals.troubleBuildNo].Priority = 30;
+        buildCams[Globals.troubleBuildNo-1].Priority = 30;
         yield return new WaitForSeconds(2f);
-        buildCams[Globals.troubleBuildNo].Priority = 0;
+        buildCams[Globals.troubleBuildNo-1].Priority = 0;
         coroutineActive = true;
         troubleActive = true;
     }
@@ -52,7 +56,10 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
     {
         if(other.tag == "Player")
         {
-            StartCoroutine(troubledBuildReview());
+            if (Globals.troubleBuildNo > 0)
+            {
+                StartCoroutine(troubledBuildReview());
+            }
         }
     }
     IEnumerator troubledBuildReview()
@@ -66,9 +73,9 @@ public class viewTroubledBuild : MonoBehaviour, IisTrouble, IRunner, IFinish
             }
             yield return null;
         }
-        buildCams[Globals.troubleBuildNo].Priority = 30;
+        buildCams[Globals.troubleBuildNo-1].Priority = 30;
         yield return new WaitForSeconds(1.5f);
-        buildCams[Globals.troubleBuildNo].Priority = 0;
+        buildCams[Globals.troubleBuildNo-1].Priority = 0;
         coroutineActive = true;
         troubleActive = true;
     }

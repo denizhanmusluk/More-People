@@ -658,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jobId: 2
   outline: {fileID: 0}
+  icon: {fileID: 0}
   employeCountText: {fileID: 0}
   EmplCountforUpgrade: 03000000070000000d0000000d0000000d0000000d0000000d0000000d0000000d0000000d000000
   build: {fileID: 7853690900810090649}
@@ -699,6 +700,7 @@ MonoBehaviour:
   fireWork: {fileID: 3944842873613572183}
   hiringImage: {fileID: 0}
   downArrow: {fileID: 0}
+  upArrow: {fileID: 0}
 --- !u!33 &8412899229243198877
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1954,9 +1956,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.8
-  m_Height: 2.59
+  m_Height: 5.542322
   m_Direction: 1
-  m_Center: {x: 0, y: 0.34, z: 0}
+  m_Center: {x: 0, y: 1.8161612, z: 0}
 --- !u!1 &1966182524573215772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,6 +3918,7 @@ MonoBehaviour:
   fireWork: {fileID: 7693741097562249268}
   hiringImage: {fileID: 0}
   downArrow: {fileID: 0}
+  upArrow: {fileID: 0}
 --- !u!54 &3806015057191223263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3946,6 +3949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jobId: 1
   outline: {fileID: 0}
+  icon: {fileID: 0}
   employeCountText: {fileID: 0}
   EmplCountforUpgrade: 03000000070000000d0000000d0000000d0000000d0000000d0000000d0000000d0000000d000000
   build: {fileID: 5279223486058708811}
@@ -11798,7 +11802,7 @@ PrefabInstance:
     - target: {fileID: 4286379536849412132, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4286379536849412132, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
@@ -11833,7 +11837,7 @@ PrefabInstance:
     - target: {fileID: 4972712776655012503, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5713477976888585275, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
@@ -12713,12 +12717,12 @@ PrefabInstance:
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029823433
+      value: 0.000000029823433
       objectReference: {fileID: 0}
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000019204581
+      value: -0.000000019204581
       objectReference: {fileID: 0}
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}

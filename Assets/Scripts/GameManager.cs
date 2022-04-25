@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     [SerializeField] public GameObject hiringDoctor, hiringPolice, hiringFarmer, hiringTeacher;
     [SerializeField] TextMeshProUGUI population;
     [SerializeField] public Image downArrow;
+    [SerializeField] public Image upArrow;
 
 
     void Awake()
@@ -63,9 +64,28 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     {
         population.text = Globals.population.ToString();
     }
+    IEnumerator loopColorScaleSet()
+    {
+        float counter1 = 0f;
+
+        float scaleValue1 = 0f;
+
+        while (true)
+        {
+            counter1 += 5 * Time.deltaTime;
+            scaleValue1 = Mathf.Abs(Mathf.Cos(counter1));
+            upArrow.transform.localScale = Vector3.one + new Vector3(scaleValue1 / 5f, scaleValue1 / 5f, scaleValue1 / 5f);
+            upArrow.GetComponent<Image>().color = new Color(1 - scaleValue1, 1, 1 - scaleValue1);
+            yield return null;
+        }
+        upArrow.transform.localScale = Vector3.one;
+        upArrow.GetComponent<Image>().color = new Color(1, 1, 1);
+
+    }
     void Start()
     {
-        downArrow.gameObject.SetActive(false);
+        //downArrow.gameObject.SetActive(false);
+        upArrow.gameObject.SetActive(true);
         Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
@@ -84,6 +104,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
         Add_RunnerStartObserver(this);
         moneyLabel.text =Globals.moneyAmount.ToString();
         StartCoroutine(gamePanelSet(false));
+        StartCoroutine(loopColorScaleSet());
     }
     ///////////////////////////////////////////////////
     IEnumerator scaleBagels()
@@ -177,13 +198,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
     public void RestartButton()
     {
-        //
-        //Globals.currentLevel = 1;
-        //PlayerPrefs.SetInt("levelIndex", 1);
-        //
-
-        //Globals.currentLevelIndex = 0;
-        //PlayerPrefs.SetInt("level", 0);
+    
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
    public void finishRunner()
@@ -195,6 +210,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
     public void runnerStar()
     {
+        //elephant next level
+
         Globals.currentLevel++;
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
         //
@@ -224,10 +241,9 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
     public void NextLevelbutton()
     {
-        //elephant next level
         Globals.currentLevel++;
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
-        //
+        
 
         Globals.currentLevelIndex++;
         if (Globals.LevelCount - 1< Globals.currentLevelIndex)
@@ -247,9 +263,8 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver,IFinish,IR
     }
     public void failLevelbutton()
     {
-        //elephant fail
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
-        //
+        
 
 
 

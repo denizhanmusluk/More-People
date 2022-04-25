@@ -6,7 +6,7 @@ using TMPro;
 public class University : MonoBehaviour, IEmployeeDropping
 {
     [SerializeField] int jobId = 4;
-    [SerializeField] public Image outline;
+    [SerializeField] public Image outline, icon;
     [SerializeField] public TextMeshProUGUI employeCountText;
     [SerializeField] public int[] EmplCountforUpgrade;
     public Build build;
@@ -44,7 +44,14 @@ public class University : MonoBehaviour, IEmployeeDropping
         yield return new WaitForSeconds(0.5f);
         foreach (var img in GetComponentsInChildren<Image>())
         {
-            outline = img;
+            if (img.transform.name == "OutLine")
+            {
+                outline = img;
+            }
+            if (img.transform.name == "icon")
+            {
+                icon = img;
+            }
         }
         foreach (var txt in GetComponentsInChildren<TextMeshProUGUI>())
         {
@@ -66,6 +73,7 @@ public class University : MonoBehaviour, IEmployeeDropping
         {
             outline.fillAmount = (float)Globals.currentTeacherCount / (float)EmplCountforUpgrade[Globals.universityLevel];
             employeCountText.text = Globals.currentTeacherCount.ToString() + "/" + EmplCountforUpgrade[Globals.universityLevel].ToString();
+            StartCoroutine(iconScaleSet());
         }
         if (Globals.currentTeacherCount == EmplCountforUpgrade[Globals.universityLevel])
         {
@@ -122,5 +130,21 @@ public class University : MonoBehaviour, IEmployeeDropping
                 }
             }
         }
+    }
+
+
+    IEnumerator iconScaleSet()
+    {
+        float counter1 = 0f;
+        float scaleValue1 = 0f;
+
+        while (counter1< Mathf.PI)
+        {
+            counter1 += 40 * Time.deltaTime;
+            scaleValue1 =1 - Mathf.Abs(Mathf.Cos(counter1));
+            icon.transform.localScale = Vector3.one + new Vector3(scaleValue1 / 5f, scaleValue1 / 5f, scaleValue1 / 5f);
+            yield return null;
+        }
+        icon.transform.localScale = Vector3.one;
     }
 }

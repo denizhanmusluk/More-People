@@ -27,11 +27,12 @@ public class Build : MonoBehaviour,IBuild
     [SerializeField] GameObject envirnmonetParticles;
     [SerializeField] ParticleSystem fireWork;
     public GameObject hiringImage;
-    public GameObject downArrow;
+    public GameObject downArrow, upArrow;
     private void Start()
     {
         TroubleManager.Instance.Add_TroubleObserver(this);
         downArrow = GameManager.Instance.downArrow.gameObject;
+        upArrow = GameManager.Instance.upArrow.gameObject;
     }
 
     private void Awake()
@@ -104,10 +105,10 @@ public class Build : MonoBehaviour,IBuild
                     }
                     if (buildNo == 4)
                     {
-
+                        customerList[i].GetComponent<NPC>().currentSelection = NPC.States.troubleUniversity;
                     }
                 }
-                Globals.troubleBuildNo = buildNo - 1;
+                Globals.troubleBuildNo = buildNo;
                 attention.SetActive(true);
                 envirnmonetParticles.SetActive(true);
 
@@ -119,6 +120,8 @@ public class Build : MonoBehaviour,IBuild
                 //TroubleManager.Instance.Remove_TroubleObserver(this);
                 TroubleManager.Instance.Notify_isTroubleObservers();
                 Debug.Log("trouble active" + transform.name);
+                upArrow.GetComponent<Image>().enabled = false;
+
             }
         }
         else
@@ -135,6 +138,7 @@ public class Build : MonoBehaviour,IBuild
                 Debug.Log("sorun cozuldu");
                 attention.SetActive(false);
                 envirnmonetParticles.SetActive(false);
+                upArrow.GetComponent<Image>().enabled = true;
 
                 //envirnmonetParticles.SetActive(false);
 
@@ -149,6 +153,7 @@ public class Build : MonoBehaviour,IBuild
     IEnumerator loopColorScaleSet()
     {
         hiringImage.SetActive(true);
+        upArrow.GetComponent<Image>().enabled = false;
         downArrow.SetActive(true);
         float counter1 = 0f;
         float counter2 = 0f;
@@ -174,7 +179,7 @@ public class Build : MonoBehaviour,IBuild
             Text1.color = new Color(scaleValue3, 0, 0);
             hiringImage.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
             downArrow.transform.localScale = Vector3.one + new Vector3(scaleValue4 / 5f, scaleValue4 / 5f, scaleValue4 / 5f);
-            downArrow.GetComponent<Image>().color = new Color(scaleValue3, 0, 0);
+            downArrow.GetComponent<Image>().color = new Color(1, 1 - scaleValue3, 1 - scaleValue3);
 
 
 

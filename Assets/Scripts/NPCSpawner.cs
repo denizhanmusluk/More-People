@@ -24,7 +24,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
  
         StartCoroutine(SpawnCustomer());
         GameManager.Instance.Remove_StartObserver(this);
-
+        Globals.population = 20;
     }
     private void OnEnable()
     {
@@ -78,11 +78,19 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
                 }
                 if (target[selectTarget].parent.GetComponent<Build>().buildNo == 4)
                 {
-
+                    _npc.GetComponent<NPC>().currentSelection = NPC.States.troubleUniversity;
                 }
-                if (Globals.population > 1)
+                int i = 5;
+                while (i > 1)
                 {
-                    Globals.population -= 2;
+                    i--;
+
+                    if (Globals.population > 20)
+                    {
+                        Globals.population -= 1;
+                        GameManager.Instance.populationUpdate();
+                    }
+                    yield return new WaitForSeconds(0.2f);
                 }
             }
             else

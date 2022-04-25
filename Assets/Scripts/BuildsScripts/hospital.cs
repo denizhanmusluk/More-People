@@ -6,7 +6,7 @@ using TMPro;
 public class hospital : MonoBehaviour,IEmployeeDropping
 {
     [SerializeField] public int jobId = 1;
-    [SerializeField] public Image outline;
+    [SerializeField] public Image outline, icon;
     [SerializeField] public TextMeshProUGUI employeCountText;
     [SerializeField] public int[] EmplCountforUpgrade;
     public Build build;
@@ -48,6 +48,10 @@ public class hospital : MonoBehaviour,IEmployeeDropping
             {
                 outline = img;
             }
+            if (img.transform.name == "icon")
+            {
+                icon = img;
+            }
         }
         foreach (var txt in GetComponentsInChildren<TextMeshProUGUI>())
         {
@@ -70,6 +74,8 @@ public class hospital : MonoBehaviour,IEmployeeDropping
             outline.fillAmount = (float)Globals.currentDoctorCount / (float)EmplCountforUpgrade[Globals.hospitalLevel];
 
             employeCountText.text = Globals.currentDoctorCount.ToString() + "/" + EmplCountforUpgrade[Globals.hospitalLevel].ToString();
+            StartCoroutine(iconScaleSet());
+
         }
         if (Globals.currentDoctorCount == EmplCountforUpgrade[Globals.hospitalLevel])
         {
@@ -126,5 +132,20 @@ public class hospital : MonoBehaviour,IEmployeeDropping
                 }
             }
         }
+    }
+
+    IEnumerator iconScaleSet()
+    {
+        float counter1 = 0f;
+        float scaleValue1 = 0f;
+
+        while (counter1 < Mathf.PI)
+        {
+            counter1 += 40 * Time.deltaTime;
+            scaleValue1 = 1 - Mathf.Abs(Mathf.Cos(counter1));
+            icon.transform.localScale = Vector3.one + new Vector3(scaleValue1 / 5f, scaleValue1 / 5f, scaleValue1 / 5f);
+            yield return null;
+        }
+        icon.transform.localScale = Vector3.one;
     }
 }

@@ -43,11 +43,27 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         weatherActive = false;
 
     }
+    IEnumerator springParticleInst()
+    {
+      var particle1 =  Instantiate(springParticle, transform.position, Quaternion.Euler(90,0,0),transform.parent.parent);
+        particle1.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        var particle2 = Instantiate(springParticle, transform.position, Quaternion.Euler(90, 0, 0), transform.parent.parent);
+        particle2.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        var particle3 = Instantiate(springParticle, transform.position, Quaternion.Euler(90, 0, 0), transform.parent.parent);
+        particle3.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        var particle4 = Instantiate(springParticle, transform.position, Quaternion.Euler(90, 0, 0), transform.parent.parent);
+        particle4.gameObject.SetActive(true);
+    }
     public void torubleFix()
     {
+        Globals.troubleBuildNo = 0;
         troubleLevel--;
         Debug.Log("trouble level" + troubleLevel);
-        springParticle.Play();
+        //springParticle.Play();
+        StartCoroutine(springParticleInst());
     }
     public void isTrouble()
     {

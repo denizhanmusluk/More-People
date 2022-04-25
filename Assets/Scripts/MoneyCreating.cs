@@ -15,10 +15,16 @@ public class MoneyCreating : MonoBehaviour
     //[SerializeField] Transform firstInstPoint, firstInstPoint2;
     [SerializeField] MoneyCollect moneyCollecting;
     [SerializeField] public MeshRenderer buildMesh;
-    public float spawnTurboTime = 0.1f;
-    public float firstSpawnTime;
+    float spawnTurboTime = 0.04f;
+   public float firstSpawnTime;
+    private void Awake()
+    {
+        firstSpawnTime = spawnTime;
+
+    }
     void Start()
     {
+
         Debug.Log("firstSpawnTime " + firstSpawnTime);
 
         StartCoroutine(SpawnMoney());
@@ -29,7 +35,7 @@ public class MoneyCreating : MonoBehaviour
         while (!transform.parent.GetComponent<Build>().troubleActive)
         {
             yield return new WaitForSeconds(spawnTime);
-            firstSpawnTime = spawnTime;
+            //firstSpawnTime = spawnTime;
 
             if (moneyCollecting.moneyNum < maxLimit)
             {
@@ -72,7 +78,7 @@ public class MoneyCreating : MonoBehaviour
         Debug.Log("spawnTurboTime " + spawnTurboTime);
         Debug.Log("firstSpawnTime " + firstSpawnTime);
         spawnTime = spawnTurboTime;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         spawnTime = firstSpawnTime;
         Debug.Log("spawn active 2");
 

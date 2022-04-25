@@ -588,6 +588,7 @@ MonoBehaviour:
   fireWork: {fileID: 2088512447244757491}
   hiringImage: {fileID: 0}
   downArrow: {fileID: 0}
+  upArrow: {fileID: 0}
 --- !u!54 &8824654406044618408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -618,6 +619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jobId: 1
   outline: {fileID: 0}
+  icon: {fileID: 0}
   employeCountText: {fileID: 0}
   EmplCountforUpgrade: 03000000070000000d0000000d0000000d0000000d0000000d0000000d0000000d0000000d000000
   build: {fileID: 568939133450718780}
@@ -3429,6 +3431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jobId: 2
   outline: {fileID: 0}
+  icon: {fileID: 0}
   employeCountText: {fileID: 0}
   EmplCountforUpgrade: 03000000070000000d0000000d0000000d0000000d0000000d0000000d0000000d0000000d000000
   build: {fileID: 2475639119314385390}
@@ -3470,6 +3473,7 @@ MonoBehaviour:
   fireWork: {fileID: 1547026941790876735}
   hiringImage: {fileID: 0}
   downArrow: {fileID: 0}
+  upArrow: {fileID: 0}
 --- !u!33 &4208131906760965354
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5299,9 +5303,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.8
-  m_Height: 2.59
+  m_Height: 5.542322
   m_Direction: 1
-  m_Center: {x: 0, y: 0.34, z: 0}
+  m_Center: {x: 0, y: 1.8161612, z: 0}
 --- !u!1 &6192342269556677995
 GameObject:
   m_ObjectHideFlags: 0
@@ -15269,7 +15273,7 @@ PrefabInstance:
     - target: {fileID: 4286379536849412132, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
       propertyPath: playOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4286379536849412132, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
@@ -15304,7 +15308,7 @@ PrefabInstance:
     - target: {fileID: 4972712776655012503, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5713477976888585275, guid: b1c220e1db5d7ec489ebc18031452973,
         type: 3}

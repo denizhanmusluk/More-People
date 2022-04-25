@@ -17,6 +17,6 @@ public static class Globals
     public static int currentFarmerCount = 0, farmvilleLevel = 0;
     public static int currentTeacherCount = 0, universityLevel = 0;
 
-    public static int troubleBuildNo;
+    public static int troubleBuildNo = 0;
     public static int population = 0;
 }
