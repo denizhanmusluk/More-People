@@ -7,6 +7,7 @@ using TMPro;
 public class BuyBuild : MonoBehaviour
 {
     [SerializeField] int cost;
+    int currentAmount;
     [SerializeField] public Image outline;
     [SerializeField] public TextMeshProUGUI costText;
     bool pressed = false;
@@ -15,6 +16,9 @@ public class BuyBuild : MonoBehaviour
     [SerializeField] GameObject buildPrefab;
     [SerializeField] Vector3 buildPositionOffset;
     [SerializeField] string buyName;
+    public bool isbuy = true;
+    [SerializeField] string currentCostBuild;
+
     void Start()
     {
         if (PlayerPrefs.GetInt(buyName) == 1)
@@ -24,7 +28,21 @@ public class BuyBuild : MonoBehaviour
             GetComponent<Collider>().enabled = false;
 
         }
-        costText.text = cost.ToString();
+
+
+        if (PlayerPrefs.GetInt(currentCostBuild) == 0)
+        {
+            currentAmount = cost;
+            costText.text = cost.ToString();
+        }
+        else
+        {
+            currentAmount = PlayerPrefs.GetInt(currentCostBuild);
+            costText.text = currentAmount.ToString();
+        }
+        outline.fillAmount = 1 - (float)currentAmount / (float)cost;
+
+
     }
     void Update()
     {
@@ -39,50 +57,87 @@ public class BuyBuild : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerPrefs.SetInt(buyName, 0);
-
+            PlayerPrefs.SetInt(currentCostBuild, 0);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount >= cost)
+            if (Globals.moneyAmount > 49)
             {
-                if (sellActive)
+                if (sellActive && isbuy)
                 {
-                    buy();
+                    StartCoroutine(buy());
                 }
                 //GameManager.Instance.MoneyUpdate(-cost);
             }
         }
     }
-    public void buy()
+    IEnumerator buy()
     {
-        if (pressed == false && isWork == false)
+        isbuy = false;
+        currentAmount-=50;
+        outline.fillAmount =1 - (float)currentAmount / (float)cost;
+        costText.text = currentAmount.ToString();
+        GameManager.Instance.MoneyUpdate(-50);
+        PlayerPrefs.SetInt(currentCostBuild, currentAmount);
+        if (currentAmount == 0)
         {
-            if (Globals.moneyAmount >= cost)
-            {
-                isWork = true;
-
-
-                LeanTween.value(0, 1, 2).setOnUpdate((float val) =>
-                {
-                    outline.fillAmount = val;
-                    costText.text = ((1 - val) * (float)cost).ToString("N0");
-                }).setOnComplete(() =>
-                {
-                    outline.fillAmount = 0;
-                    isWork = false;
-                    sellActive = false;
-                    //MoneyUpdate(buyObj.GetComponent<buy>().buyAmount * -1);
-                    GameManager.Instance.MoneyUpdate(-cost);
-                    StartCoroutine(buildScaling());
-                    GetComponent<Collider>().enabled = false;
-                });
-
-            }
+            outline.fillAmount = 0;
+            sellActive = false;
+            StartCoroutine(buildScaling());
+            GetComponent<Collider>().enabled = false;
         }
+
+
+
+        yield return null;
+        isbuy = true;
+
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        if (Globals.moneyAmount >= cost)
+    //        {
+    //            if (sellActive)
+    //            {
+    //                buy();
+    //            }
+    //            //GameManager.Instance.MoneyUpdate(-cost);
+    //        }
+    //    }
+    //}
+    //public void buy()
+    //{
+    //    if (pressed == false && isWork == false)
+    //    {
+    //        if (Globals.moneyAmount >= cost)
+    //        {
+    //            isWork = true;
+
+
+    //            LeanTween.value(0, 1, 2).setOnUpdate((float val) =>
+    //            {
+    //                outline.fillAmount = val;
+    //                costText.text = ((1 - val) * (float)cost).ToString("N0");
+    //            }).setOnComplete(() =>
+    //            {
+    //                outline.fillAmount = 0;
+    //                isWork = false;
+    //                sellActive = false;
+    //                //MoneyUpdate(buyObj.GetComponent<buy>().buyAmount * -1);
+    //                GameManager.Instance.MoneyUpdate(-cost);
+    //                StartCoroutine(buildScaling());
+    //                GetComponent<Collider>().enabled = false;
+    //            });
+
+    //        }
+    //    }
+    //}
     IEnumerator buildScaling()
     {
         int buildChildCount = transform.childCount;

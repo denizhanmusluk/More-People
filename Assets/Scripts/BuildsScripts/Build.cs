@@ -114,6 +114,10 @@ public class Build : MonoBehaviour,IBuild
 
                 //textColorSet();
                 buildMesh.material = troubleMaterial;
+                for(int i = 0; i< buildMesh.transform.childCount; i++)
+                {
+                    buildMesh.transform.GetChild(i).transform.GetComponent<MeshRenderer>().material = troubleMaterial;
+                }
                 //BuildColorSet();
 
                 StartCoroutine(loopColorScaleSet());

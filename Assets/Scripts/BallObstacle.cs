@@ -41,7 +41,7 @@ public class BallObstacle : MonoBehaviour
             float angle = 0;
             while (counter < Mathf.PI)
             {
-                counter += 2 * Time.deltaTime;
+                counter += 4 * Time.deltaTime;
                 angle = Mathf.Cos(counter);
                 angle *= 70;
 

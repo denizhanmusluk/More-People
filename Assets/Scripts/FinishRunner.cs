@@ -36,7 +36,7 @@ public class FinishRunner : MonoBehaviour
     }
     IEnumerator CameraChange()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         playerControl.idleCamera.Priority = 10;
         playerControl.runnerCamera.Priority = 0;
         playerControl.runnerToIdleCamera.Priority = 0;
@@ -44,7 +44,7 @@ public class FinishRunner : MonoBehaviour
         playerControl.Hand.SetActive(false);
         playerControl.anim.SetBool("walk", true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
 
         playerControl.anim.SetTrigger("flip");
 

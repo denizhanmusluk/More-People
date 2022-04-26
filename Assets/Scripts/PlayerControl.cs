@@ -105,7 +105,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
         runnerCamera.Priority = 0;
         idleCamera.Priority = 0;
         runnerToIdleCamera.Priority = 10;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.65f);
         runnerCamera.Priority = 10;
         idleCamera.Priority = 0;
         runnerToIdleCamera.Priority = 0;
@@ -113,7 +113,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
         Lawyer.SetActive(false);
         Hand.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         runnerControlActive = true;
     }
     void forward()
@@ -179,7 +179,7 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
     }
     private void changeSpeed()
     {
-        spd -= 7 * Time.deltaTime;
+        spd -= 10 * Time.deltaTime;
         if (spd > 0)
         {
             transform.parent.transform.Translate(transform.parent.transform.forward * Time.deltaTime * spd);
