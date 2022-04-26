@@ -4680,7 +4680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141cfd34b3cb2c64eaa724c1f94b4d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controlsensivity: 2
+  Controlsensivity: 3
   Lawyer: {fileID: 8106391006728622479}
   Hand: {fileID: 6140933818032336206}
   acceleration: 15

@@ -46,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
     }
     public void followTarget(GameObject human, Transform followPoint)
     {
-        StartCoroutine(reMoveToFollowPoint(human, followPoint));
+        StartCoroutine(reMoveToFollowPoint(humanfront, followPoint));
     }
     IEnumerator moveToFollowPoint(GameObject human)
     {
@@ -77,7 +77,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         while (runnerActive)
         {
             //human.transform.position = Vector3.MoveTowards(human.transform.position, followPoint.position, (Mathf.Abs(playerParent.horizontalFollowSpeed) + 10 ) * 0.8f * Time.deltaTime);
-            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3( followPoint.position.x, human.transform.position.y, human.transform.position.z), followSpeed * (Vector3.Distance(human.transform.position, followPoint.position)) / FollowDistance * Time.deltaTime);
+            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3( followPoint.position.x, human.transform.position.y, followPoint.transform.position.z), followSpeed * (Vector3.Distance(human.transform.position, followPoint.position)) / FollowDistance * Time.deltaTime);
 
             yield return null;
 
@@ -94,18 +94,18 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
             humanfront.GetComponent<PlayerBehaviour>().humanBack = humanBack;
             humanBack.GetComponent<PlayerBehaviour>().humanfront = humanfront;
             humanBack.GetComponent<PlayerBehaviour>().followTarget(humanBack.GetComponent<PlayerBehaviour>().humanfront, humanBack.GetComponent<PlayerBehaviour>().followPoint);
-
         }
         playerParent.humans.Remove(this.transform);
         GetComponent<Ragdoll>().RagdollActivateWithForce(true, transform.position.x - obs.transform.position.x);
-        Destroy(this,0.1f);
+        Destroy(this);
 
     }
     IEnumerator reMoveToFollowPoint(GameObject human,Transform _followPoint)
     {
-        while (Vector3.Distance(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z)) > 0.5f)
+        while (Vector3.Distance(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z)) > 0.1f)
         {
-            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z), 60f * Time.deltaTime);
+            Debug.Log("remove following" + transform.name);
+            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z),( Vector3.Distance(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z)) * 10f + 1f )* Time.deltaTime);
             yield return null;
 
         }

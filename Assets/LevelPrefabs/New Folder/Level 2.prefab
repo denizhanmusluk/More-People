@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141cfd34b3cb2c64eaa724c1f94b4d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controlsensivity: 2
+  Controlsensivity: 3
   Lawyer: {fileID: 1058254416477570719}
   Hand: {fileID: 1339248380917699312}
   acceleration: 15
@@ -12899,12 +12899,12 @@ PrefabInstance:
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000029823433
+      value: -0.000000029823433
       objectReference: {fileID: 0}
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000019204581
+      value: 0.000000019204581
       objectReference: {fileID: 0}
     - target: {fileID: 6795410101845933476, guid: 744f26994564419409fe91a22ff250b0,
         type: 3}

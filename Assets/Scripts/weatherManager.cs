@@ -28,6 +28,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
 
         rainEmission = rainParticle.emission;
         directionLight = GameObject.Find("DirectionalLight");
+        directionLight.GetComponent<Light>().intensity = firstLight;
+
         TroubleManager.Instance.Add_TroubleFixObserver(this);
         TroubleManager.Instance.Add_isTroubleObserver(this);
         GameManager.Instance.Add_RunnerStartObserver(this);

@@ -6,6 +6,8 @@ using Cinemachine;
 public class PlayerControl : MonoBehaviour, IStartGameObserver
 {
 
+    private float m_previousY;
+    private float dY;
     private float m_previousX;
     private float dX;
     private float dX_Sum;
@@ -242,6 +244,11 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
         if (Input.GetMouseButtonDown(0))
         {
+            m_previousX = Input.mousePosition.x;
+            dX = 0f;
+            m_previousY = Input.mousePosition.y;
+            dY = 0f;
+
             firstPressPos = (Vector2)Input.mousePosition;
             pressed = true;
         }
@@ -251,10 +258,16 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
             currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
             firstPressPos = (Vector2)Input.mousePosition;
             pressed = false;
+            dX = 0f;
+            dY = 0f;
+
         }
 
         if (pressed == true)
         {
+            dX = (Input.mousePosition.x - m_previousX);
+            dY = (Input.mousePosition.y - m_previousY);
+
             anim.SetBool("walk", true);
             secondPressPos = (Vector2)Input.mousePosition;
             currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
@@ -269,8 +282,12 @@ public class PlayerControl : MonoBehaviour, IStartGameObserver
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, 300 * Time.deltaTime);
             parent.transform.position = parent.transform.position + (direction * speed * Time.deltaTime);
-
-
+            if(Vector2.Distance(secondPressPos,firstPressPos) > 100f)
+            {
+                firstPressPos += new Vector2(dX, dY);
+            }
+            m_previousX = Input.mousePosition.x;
+            m_previousY = Input.mousePosition.y;
         }
         else
         {
