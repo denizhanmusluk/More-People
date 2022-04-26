@@ -22,6 +22,10 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
     Color32 fogFirstColor = new Color32(0, 198, 255, 255);
     void Start()
     {
+        RenderSettings.fogStartDistance = firstFogStart;
+        RenderSettings.fogEndDistance = firstFogEnd;
+        RenderSettings.fogColor = new Color32(0, 198, 255, 255);
+
         rainEmission = rainParticle.emission;
         directionLight = GameObject.Find("DirectionalLight");
         TroubleManager.Instance.Add_TroubleFixObserver(this);
@@ -213,7 +217,7 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         float counter = lastFogStart;
         while (counter < firstFogStart)
         {
-            counter += 3 * Time.deltaTime;
+            counter += 10 * Time.deltaTime;
             RenderSettings.fogStartDistance = counter;
             RenderSettings.fogEndDistance = counter + 35;
 
@@ -247,8 +251,8 @@ public class weatherManager : MonoBehaviour, ITroubleFix,IisTrouble,IRunner,IFin
         byte counter2 = 77;
         while (counter < 198)
         {
-            counter += 3;
-            counter2 += 3;
+            counter += 10;
+            counter2 += 10;
 
             RenderSettings.fogColor = new Color32(0, counter, counter2, 255);
             yield return null;

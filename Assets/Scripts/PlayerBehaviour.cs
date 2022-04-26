@@ -98,20 +98,18 @@ public class PlayerBehaviour : MonoBehaviour, IDamageble
         }
         playerParent.humans.Remove(this.transform);
         GetComponent<Ragdoll>().RagdollActivateWithForce(true, transform.position.x - obs.transform.position.x);
-        Destroy(this);
+        Destroy(this,0.1f);
 
     }
-    IEnumerator reMoveToFollowPoint(GameObject human,Transform followPoint)
+    IEnumerator reMoveToFollowPoint(GameObject human,Transform _followPoint)
     {
-        while (Vector3.Distance(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z)) > 0.3f)
+        while (Vector3.Distance(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z)) > 0.5f)
         {
-            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z), 15 * Time.deltaTime);
+            human.transform.position = Vector3.MoveTowards(human.transform.position, new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z), 60f * Time.deltaTime);
             yield return null;
 
         }
-        human.transform.position = new Vector3(followPoint.position.x, human.transform.position.y, followPoint.position.z);
+        human.transform.position = new Vector3(_followPoint.position.x, human.transform.position.y, _followPoint.position.z);
         StartCoroutine(following(human, followPoint));
-
     }
-
 }

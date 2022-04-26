@@ -7,7 +7,7 @@ public class Donut : MonoBehaviour
     public Build build;
     void Start()
     {
-        build.buildInit(Globals.maxBuildLevel);
+        build.buildInit(0);
 
     }
 }
